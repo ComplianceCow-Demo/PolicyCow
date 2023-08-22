@@ -32,3 +32,4 @@ server:
   csrf:
     authKey: default-unsafe-key
     secure: false
+

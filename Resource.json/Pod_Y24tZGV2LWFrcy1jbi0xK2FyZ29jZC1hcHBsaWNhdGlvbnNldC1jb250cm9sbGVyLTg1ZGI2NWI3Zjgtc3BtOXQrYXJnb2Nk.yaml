@@ -1,0 +1,292 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2023-11-22T06:06:22Z"
+  generateName: argocd-applicationset-controller-85db65b7f8-
+  labels:
+    app.kubernetes.io/name: argocd-applicationset-controller
+    pod-template-hash: 85db65b7f8
+  name: argocd-applicationset-controller-85db65b7f8-spm9t
+  namespace: argocd
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: argocd-applicationset-controller-85db65b7f8
+    uid: 270e4f2b-bc4f-462e-a784-2a9e74cda769
+  resourceVersion: "176620012"
+  uid: 196bc1b4-6f3e-4b9f-9f3c-1de65e9a330b
+Name: argocd-applicationset-controller-85db65b7f8-spm9t
+Spec:
+  containers:
+  - args:
+    - /usr/local/bin/argocd-applicationset-controller
+    env:
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_GLOBAL_PRESERVED_ANNOTATIONS
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.global.preserved.annotations
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_GLOBAL_PRESERVED_LABELS
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.global.preserved.labels
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_LEADER_ELECTION
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.enable.leader.election
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER
+      valueFrom:
+        configMapKeyRef:
+          key: repo.server
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_POLICY
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.policy
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_POLICY_OVERRIDE
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.enable.policy.override
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_DEBUG
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.debug
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_LOGFORMAT
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.log.format
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_LOGLEVEL
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.log.level
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_DRY_RUN
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.dryrun
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_GIT_MODULES_ENABLED
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.enable.git.submodule
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_PROGRESSIVE_SYNCS
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.enable.progressive.syncs
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_ENABLE_NEW_GIT_FILE_GLOBBING
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.enable.new.git.file.globbing
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER_PLAINTEXT
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.repo.server.plaintext
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER_STRICT_TLS
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.repo.server.strict.tls
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_REPO_SERVER_TIMEOUT_SECONDS
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.repo.server.timeout.seconds
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_CONCURRENT_RECONCILIATIONS
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.concurrent.reconciliations.max
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_NAMESPACES
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.namespaces
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_SCM_ROOT_CA_PATH
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.scm.root.ca.path
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATIONSET_CONTROLLER_ALLOWED_SCM_PROVIDERS
+      valueFrom:
+        configMapKeyRef:
+          key: applicationsetcontroller.allowed.scm.providers
+          name: argocd-cmd-params-cm
+          optional: true
+    image: quay.io/argoproj/argocd:v2.9.2
+    imagePullPolicy: Always
+    name: argocd-applicationset-controller
+    ports:
+    - containerPort: "90"
+      name: webhook
+      protocol: TCP
+    - containerPort: "90"
+      name: metrics
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /app/config/ssh
+      name: ssh-known-hosts
+    - mountPath: /app/config/tls
+      name: tls-certs
+    - mountPath: /app/config/gpg/source
+      name: gpg-keys
+    - mountPath: /app/config/gpg/keys
+      name: gpg-keyring
+    - mountPath: /tmp
+      name: tmp
+    - mountPath: /app/config/reposerver/tls
+      name: argocd-repo-server-tls
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vppl9
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000004
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: argocd-applicationset-controller
+  serviceAccountName: argocd-applicationset-controller
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - configMap:
+      defaultMode: 420
+      name: argocd-ssh-known-hosts-cm
+    name: ssh-known-hosts
+  - configMap:
+      defaultMode: 420
+      name: argocd-tls-certs-cm
+    name: tls-certs
+  - configMap:
+      defaultMode: 420
+      name: argocd-gpg-keys-cm
+    name: gpg-keys
+  - emptyDir: {}
+    name: gpg-keyring
+  - emptyDir: {}
+    name: tmp
+  - name: argocd-repo-server-tls
+    secret:
+      defaultMode: 420
+      items:
+      - key: tls.crt
+        path: tls.crt
+      - key: tls.key
+        path: tls.key
+      - key: ca.crt
+        path: ca.crt
+      optional: true
+      secretName: argocd-repo-server-tls
+  - name: kube-api-access-vppl9
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:22Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:29Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:29Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:22Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://5615fe096849e237ed6a965731374e4ec5f2e46378cd262d4eb0c9f03795bfac
+    image: quay.io/argoproj/argocd:v2.9.2
+    imageID: quay.io/argoproj/argocd@sha256:8576d347f30fa4c56a0129d1c0a0f5ed1e75662f0499f1ed7e917c405fd909dc
+    lastState: {}
+    name: argocd-applicationset-controller
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-11-22T06:06:28Z"
+  hostIP: 10.4.16.5
+  phase: Running
+  podIP: 10.4.16.43
+  podIPs:
+  - ip: 10.4.16.43
+  qosClass: BestEffort
+  startTime: "2023-11-22T06:06:22Z"

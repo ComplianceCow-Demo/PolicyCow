@@ -1,0 +1,117 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2023-11-21T05:41:44Z"
+  generateName: coalfirepartnerservice-dd86bddc-
+  labels:
+    app: coalfirepartnerservice
+    pod-template-hash: dd86bddc
+  name: coalfirepartnerservice-dd86bddc-c82jj
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: coalfirepartnerservice-dd86bddc
+    uid: ccbb1f3d-257e-4483-b4bd-a9a0ba7e0028
+  resourceVersion: "176201593"
+  uid: dc594e23-5380-492e-bd68-a09988813248
+Name: coalfirepartnerservice-dd86bddc-c82jj
+Spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/coalfirepartnerservice:1.0
+    imagePullPolicy: Always
+    name: coalfirepartnerservice
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    securityContext:
+      capabilities:
+        drop: NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-2gdtw
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000004
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-2gdtw
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-21T05:41:44Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-21T05:41:55Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-21T05:41:55Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-21T05:41:44Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://6d4c699b150fe2f1c87ab75da572b681b452e7b4c3399d995003ef9b0dc83a07
+    image: continube.azurecr.io/compliancecow/dev/coalfirepartnerservice:1.0
+    imageID: continube.azurecr.io/compliancecow/dev/coalfirepartnerservice@sha256:ee79337f06556f4f6262e921dd1aa50ee7b74f2ca738f1a7807b03aae2864190
+    lastState: {}
+    name: coalfirepartnerservice
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-11-21T05:41:55Z"
+  hostIP: 10.4.16.5
+  phase: Running
+  podIP: 10.4.16.17
+  podIPs:
+  - ip: 10.4.16.17
+  qosClass: BestEffort
+  startTime: "2023-11-21T05:41:44Z"

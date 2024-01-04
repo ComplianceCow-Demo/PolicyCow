@@ -1,0 +1,124 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2024-01-04T12:14:27Z"
+  generateName: cowapicallbackservice-6bd54fb4d9-
+  labels:
+    app: cowapicallbackservice
+    pod-template-hash: 6bd54fb4d9
+  name: cowapicallbackservice-6bd54fb4d9-9mdkr
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowapicallbackservice-6bd54fb4d9
+    uid: 3853201d-2d07-433c-b5e9-524d9d6725ed
+  resourceVersion: "194947322"
+  uid: a4758ee1-0783-4775-9310-9580eae47027
+Name: cowapicallbackservice-6bd54fb4d9-9mdkr
+Spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowapicallbackservice:R239.0.73-A
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 80
+        scheme: HTTP
+      initialDelaySeconds: 300
+      periodSeconds: 60
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: cowapicallbackservice
+    resources: {}
+    securityContext:
+      capabilities:
+        drop: NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-jknjg
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000004
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-jknjg
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:27Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:38Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:38Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:27Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://ede87c3cc9c0ee053f449f1f682a143fd2cf4ba09dba3b5dee08c17ca741e0ee
+    image: continube.azurecr.io/compliancecow/dev/cowapicallbackservice:R239.0.73-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowapicallbackservice@sha256:e8764f090ffc9bc9c4803f8ccb5abdb636605a20bdee584b5e2e6196926b4b47
+    lastState: {}
+    name: cowapicallbackservice
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-01-04T12:14:37Z"
+  hostIP: 10.4.16.5
+  phase: Running
+  podIP: 10.4.16.16
+  podIPs:
+  - ip: 10.4.16.16
+  qosClass: BestEffort
+  startTime: "2024-01-04T12:14:27Z"

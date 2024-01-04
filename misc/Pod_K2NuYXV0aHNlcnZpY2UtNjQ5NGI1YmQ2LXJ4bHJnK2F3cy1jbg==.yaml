@@ -1,0 +1,105 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2023-02-01T15:45:20Z"
+  generateName: cnauthservice-6494b5bd6-
+  labels:
+    app: cnauthservice
+    pod-template-hash: 6494b5bd6
+  name: cnauthservice-6494b5bd6-rxlrg
+  namespace: aws-cn
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cnauthservice-6494b5bd6
+    uid: b20e1e43-73af-4a68-989d-0e300c3bf67b
+  resourceVersion: "66115845"
+  uid: 5874cd59-f8cc-4606-a4e4-0884c368aa61
+spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: aks-env
+    image: continube.azurecr.io/cnauthservice:latest
+    imagePullPolicy: Always
+    name: cnauthservice
+    ports:
+    - containerPort: "90"
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-lt9nq
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000007
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-lt9nq
+    secret:
+      defaultMode: 420
+      secretName: default-token-lt9nq
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-01T19:13:49Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-01T19:16:10Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-01T19:16:10Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-02-01T19:13:49Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://084511e20852d153cc3f36467d9fb05c2007eaaced20ec6abe57a50953110e1f
+    image: continube.azurecr.io/cnauthservice:latest
+    imageID: continube.azurecr.io/cnauthservice@sha256:e6e51eb2f24dfbd1574efff7a64e81deadab5f36276d3f036b192a98e03d0049
+    lastState:
+      terminated:
+        containerID: containerd://cd2ad74e1b2b798ddb85d3cda597c6c687ef83109ddc86ec80f7e57cff5e1933
+        exitCode: 1
+        finishedAt: "2023-02-01T19:15:35Z"
+        reason: Error
+        startedAt: "2023-02-01T19:14:45Z"
+    name: cnauthservice
+    ready: true
+    restartCount: 1
+    started: true
+    state:
+      running:
+        startedAt: "2023-02-01T19:16:09Z"
+  hostIP: 10.4.16.158
+  phase: Running
+  podIP: 10.4.16.182
+  podIPs:
+  - ip: 10.4.16.182
+  qosClass: BestEffort
+  startTime: "2023-02-01T19:13:49Z"

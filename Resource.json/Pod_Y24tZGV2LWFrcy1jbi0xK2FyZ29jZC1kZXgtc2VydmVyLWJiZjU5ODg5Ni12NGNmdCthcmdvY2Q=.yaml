@@ -1,0 +1,209 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2023-11-22T06:06:22Z"
+  generateName: argocd-dex-server-bbf598896-
+  labels:
+    app.kubernetes.io/name: argocd-dex-server
+    pod-template-hash: bbf598896
+  name: argocd-dex-server-bbf598896-v4cft
+  namespace: argocd
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: argocd-dex-server-bbf598896
+    uid: be851d85-037a-4d03-916b-8ceb286e01b5
+  resourceVersion: "176620084"
+  uid: 0fa0500e-c9c8-42b9-beae-48c5f84c1ea5
+Name: argocd-dex-server-bbf598896-v4cft
+Spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/part-of: argocd
+          topologyKey: kubernetes.io/hostname
+        weight: 5
+  containers:
+  - command:
+    - /shared/argocd-dex
+    - rundex
+    env:
+    - name: ARGOCD_DEX_SERVER_DISABLE_TLS
+      valueFrom:
+        configMapKeyRef:
+          key: dexserver.disable.tls
+          name: argocd-cmd-params-cm
+          optional: true
+    image: ghcr.io/dexidp/dex:v2.37.0
+    imagePullPolicy: Always
+    name: dex
+    ports:
+    - containerPort: "90"
+      protocol: TCP
+    - containerPort: "90"
+      protocol: TCP
+    - containerPort: "90"
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /shared
+      name: static-files
+    - mountPath: /tmp
+      name: dexconfig
+    - mountPath: /tls
+      name: argocd-dex-server-tls
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-stt8s
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  initContainers:
+  - command:
+    - /bin/cp
+    - -n
+    - /usr/local/bin/argocd
+    - /shared/argocd-dex
+    image: quay.io/argoproj/argocd:v2.9.2
+    imagePullPolicy: Always
+    name: copyutil
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /shared
+      name: static-files
+    - mountPath: /tmp
+      name: dexconfig
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-stt8s
+      readOnly: true
+  nodeName: aks-nodepool1-29681506-vmss000004
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: argocd-dex-server
+  serviceAccountName: argocd-dex-server
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - emptyDir: {}
+    name: static-files
+  - emptyDir: {}
+    name: dexconfig
+  - name: argocd-dex-server-tls
+    secret:
+      defaultMode: 420
+      items:
+      - key: tls.crt
+        path: tls.crt
+      - key: tls.key
+        path: tls.key
+      - key: ca.crt
+        path: ca.crt
+      optional: true
+      secretName: argocd-dex-server-tls
+  - name: kube-api-access-stt8s
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:30Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:34Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:34Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:22Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://aa60b7bf865b95c3534838c59d50c77b63df08691ad998fce77b93a85959986c
+    image: ghcr.io/dexidp/dex:v2.37.0
+    imageID: ghcr.io/dexidp/dex@sha256:f579d00721b0d842328c43a562f50343c54b0048ef2d58d6b54e750c21fc7938
+    lastState: {}
+    name: dex
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-11-22T06:06:33Z"
+  hostIP: 10.4.16.5
+  initContainerStatuses:
+  - containerID: containerd://f93af8bc556c94787653b6ac694cbcdcf72043cac8e29f02a029942e2f4ba440
+    image: quay.io/argoproj/argocd:v2.9.2
+    imageID: quay.io/argoproj/argocd@sha256:8576d347f30fa4c56a0129d1c0a0f5ed1e75662f0499f1ed7e917c405fd909dc
+    lastState: {}
+    name: copyutil
+    ready: true
+    restartCount: 0
+    state:
+      terminated:
+        containerID: containerd://f93af8bc556c94787653b6ac694cbcdcf72043cac8e29f02a029942e2f4ba440
+        exitCode: 0
+        finishedAt: "2023-11-22T06:06:29Z"
+        reason: Completed
+        startedAt: "2023-11-22T06:06:29Z"
+  phase: Running
+  podIP: 10.4.16.51
+  podIPs:
+  - ip: 10.4.16.51
+  qosClass: BestEffort
+  startTime: "2023-11-22T06:06:22Z"

@@ -1,0 +1,303 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2023-11-22T06:06:22Z"
+  generateName: argocd-application-controller-
+  labels:
+    app.kubernetes.io/name: argocd-application-controller
+    controller-revision-hash: argocd-application-controller-cd9bb8974
+    statefulset.kubernetes.io/pod-name: argocd-application-controller-0
+  name: argocd-application-controller-0
+  namespace: argocd
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: StatefulSet
+    name: argocd-application-controller
+    uid: 60efe84b-fdf8-4187-bfe3-f2e741f0574c
+  resourceVersion: "176620072"
+  uid: ea9c008b-761b-4203-9903-4abffa728075
+Name: argocd-application-controller-0
+Spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: argocd-application-controller
+          topologyKey: kubernetes.io/hostname
+        weight: 100
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/part-of: argocd
+          topologyKey: kubernetes.io/hostname
+        weight: 5
+  containers:
+  - args:
+    - /usr/local/bin/argocd-application-controller
+    env:
+    - name: ARGOCD_CONTROLLER_REPLICAS
+      value: "1"
+    - name: ARGOCD_RECONCILIATION_TIMEOUT
+      valueFrom:
+        configMapKeyRef:
+          key: timeout.reconciliation
+          name: argocd-cm
+          optional: true
+    - name: ARGOCD_HARD_RECONCILIATION_TIMEOUT
+      valueFrom:
+        configMapKeyRef:
+          key: timeout.hard.reconciliation
+          name: argocd-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER
+      valueFrom:
+        configMapKeyRef:
+          key: repo.server
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_TIMEOUT_SECONDS
+      valueFrom:
+        configMapKeyRef:
+          key: controller.repo.server.timeout.seconds
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_STATUS_PROCESSORS
+      valueFrom:
+        configMapKeyRef:
+          key: controller.status.processors
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_OPERATION_PROCESSORS
+      valueFrom:
+        configMapKeyRef:
+          key: controller.operation.processors
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_LOGFORMAT
+      valueFrom:
+        configMapKeyRef:
+          key: controller.log.format
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_LOGLEVEL
+      valueFrom:
+        configMapKeyRef:
+          key: controller.log.level
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_METRICS_CACHE_EXPIRATION
+      valueFrom:
+        configMapKeyRef:
+          key: controller.metrics.cache.expiration
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_SELF_HEAL_TIMEOUT_SECONDS
+      valueFrom:
+        configMapKeyRef:
+          key: controller.self.heal.timeout.seconds
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_PLAINTEXT
+      valueFrom:
+        configMapKeyRef:
+          key: controller.repo.server.plaintext
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_STRICT_TLS
+      valueFrom:
+        configMapKeyRef:
+          key: controller.repo.server.strict.tls
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_PERSIST_RESOURCE_HEALTH
+      valueFrom:
+        configMapKeyRef:
+          key: controller.resource.health.persist
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APP_STATE_CACHE_EXPIRATION
+      valueFrom:
+        configMapKeyRef:
+          key: controller.app.state.cache.expiration
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: REDIS_SERVER
+      valueFrom:
+        configMapKeyRef:
+          key: redis.server
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: REDIS_COMPRESSION
+      valueFrom:
+        configMapKeyRef:
+          key: redis.compression
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: REDISDB
+      valueFrom:
+        configMapKeyRef:
+          key: redis.db
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_DEFAULT_CACHE_EXPIRATION
+      valueFrom:
+        configMapKeyRef:
+          key: controller.default.cache.expiration
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_OTLP_ADDRESS
+      valueFrom:
+        configMapKeyRef:
+          key: otlp.address
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_NAMESPACES
+      valueFrom:
+        configMapKeyRef:
+          key: application.namespaces
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_CONTROLLER_SHARDING_ALGORITHM
+      valueFrom:
+        configMapKeyRef:
+          key: controller.sharding.algorithm
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_CONTROLLER_KUBECTL_PARALLELISM_LIMIT
+      valueFrom:
+        configMapKeyRef:
+          key: controller.kubectl.parallelism.limit
+          name: argocd-cmd-params-cm
+          optional: true
+    image: quay.io/argoproj/argocd:v2.9.2
+    imagePullPolicy: Always
+    name: argocd-application-controller
+    ports:
+    - containerPort: 8082
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: 8082
+        scheme: HTTP
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: NET_RAW
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /app/config/controller/tls
+      name: argocd-repo-server-tls
+    - mountPath: /home/argocd
+      name: argocd-home
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-jj92t
+      readOnly: true
+    workingDir: /home/argocd
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostname: argocd-application-controller-0
+  nodeName: aks-nodepool1-29681506-vmss000006
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: argocd-application-controller
+  serviceAccountName: argocd-application-controller
+  subdomain: argocd-application-controller
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - emptyDir: {}
+    name: argocd-home
+  - name: argocd-repo-server-tls
+    secret:
+      defaultMode: 420
+      items:
+      - key: tls.crt
+        path: tls.crt
+      - key: tls.key
+        path: tls.key
+      - key: ca.crt
+        path: ca.crt
+      optional: true
+      secretName: argocd-repo-server-tls
+  - name: kube-api-access-jj92t
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:22Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:33Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:33Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-11-22T06:06:22Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://24452546469b8ad566e8b70ad0c5cd332df3649623902f90bac2a8129fe3b774
+    image: quay.io/argoproj/argocd:v2.9.2
+    imageID: quay.io/argoproj/argocd@sha256:8576d347f30fa4c56a0129d1c0a0f5ed1e75662f0499f1ed7e917c405fd909dc
+    lastState: {}
+    name: argocd-application-controller
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-11-22T06:06:27Z"
+  hostIP: 10.4.16.107
+  phase: Running
+  podIP: 10.4.16.144
+  podIPs:
+  - ip: 10.4.16.144
+  qosClass: BestEffort
+  startTime: "2023-11-22T06:06:22Z"

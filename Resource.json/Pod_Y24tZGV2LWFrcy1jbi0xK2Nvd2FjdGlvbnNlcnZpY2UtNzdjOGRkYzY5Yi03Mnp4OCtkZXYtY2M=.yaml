@@ -1,0 +1,124 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2024-01-04T12:14:29Z"
+  generateName: cowactionservice-77c8ddc69b-
+  labels:
+    app: cowactionservice
+    pod-template-hash: 77c8ddc69b
+  name: cowactionservice-77c8ddc69b-72zx8
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowactionservice-77c8ddc69b
+    uid: c5033493-33a3-4816-82a0-4d603fde871a
+  resourceVersion: "194946944"
+  uid: 38121139-5057-4804-bbc6-fa7283dd95ce
+Name: cowactionservice-77c8ddc69b-72zx8
+Spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowactionservice:R239.0.73-A
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 80
+        scheme: HTTP
+      initialDelaySeconds: 300
+      periodSeconds: 60
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: cowactionservice
+    resources: {}
+    securityContext:
+      capabilities:
+        drop: NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-pgsl9
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000005
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-pgsl9
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:29Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:32Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:32Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:29Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://3f7cb52dddb77ea5ae36df3b0c534bf5767de7f5c58db39e2e94ec0da2cb5667
+    image: continube.azurecr.io/compliancecow/dev/cowactionservice:R239.0.73-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowactionservice@sha256:b964f3c3813102d202f3126ac1351728802ad34d014c99d67970785563266d0a
+    lastState: {}
+    name: cowactionservice
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-01-04T12:14:31Z"
+  hostIP: 10.4.16.56
+  phase: Running
+  podIP: 10.4.16.65
+  podIPs:
+  - ip: 10.4.16.65
+  qosClass: BestEffort
+  startTime: "2024-01-04T12:14:29Z"

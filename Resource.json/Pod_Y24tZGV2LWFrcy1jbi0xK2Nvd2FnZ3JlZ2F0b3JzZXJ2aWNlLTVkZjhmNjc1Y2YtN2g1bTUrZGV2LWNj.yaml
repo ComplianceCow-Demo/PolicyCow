@@ -1,0 +1,124 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2024-01-04T12:14:28Z"
+  generateName: cowaggregatorservice-5df8f675cf-
+  labels:
+    app: cowaggregatorservice
+    pod-template-hash: 5df8f675cf
+  name: cowaggregatorservice-5df8f675cf-7h5m5
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowaggregatorservice-5df8f675cf
+    uid: 7bb4b342-0de5-46d6-a939-b1f4ddd2f08c
+  resourceVersion: "194946702"
+  uid: 3974251c-6688-4f77-bdd2-df5505178479
+Name: cowaggregatorservice-5df8f675cf-7h5m5
+Spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowaggregatorservice:R239.0.73-A
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 80
+        scheme: HTTP
+      initialDelaySeconds: 300
+      periodSeconds: 60
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: cowaggregatorservice
+    resources: {}
+    securityContext:
+      capabilities:
+        drop: NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-xx9jz
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000006
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-xx9jz
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:28Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:30Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:30Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:28Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://90377a2e59da535da9c33400f6ac738fe2076418d31791c789157a8ff5551b48
+    image: continube.azurecr.io/compliancecow/dev/cowaggregatorservice:R239.0.73-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowaggregatorservice@sha256:1f7bff51eabc41ca4e36fe5044f2f27f9e60349dc65a5a9278889d0663bc86ab
+    lastState: {}
+    name: cowaggregatorservice
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-01-04T12:14:30Z"
+  hostIP: 10.4.16.107
+  phase: Running
+  podIP: 10.4.16.131
+  podIPs:
+  - ip: 10.4.16.131
+  qosClass: BestEffort
+  startTime: "2024-01-04T12:14:28Z"

@@ -1,0 +1,117 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2024-01-04T12:14:26Z"
+  generateName: cowlangservice-6779b9d567-
+  labels:
+    app: cowlangservice
+    pod-template-hash: 6779b9d567
+  name: cowlangservice-6779b9d567-p7lcz
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowlangservice-6779b9d567
+    uid: b07ffdd6-ab00-49c2-aa83-671f8bdd3929
+  resourceVersion: "194947136"
+  uid: b8409cad-d984-4206-9f8e-4b4d6c8832cf
+Name: cowlangservice-6779b9d567-p7lcz
+Spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowlangservice:R239.0.73-A
+    imagePullPolicy: Always
+    name: cowlangservice
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    securityContext:
+      capabilities:
+        drop: NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-g8gbd
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000004
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-g8gbd
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:26Z"
+    status: "true"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:36Z"
+    status: "true"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:36Z"
+    status: "true"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-01-04T12:14:26Z"
+    status: "true"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://99f39ed63d521c958338182df2bed6dafb20d8870570ce92adbff13c1db1329c
+    image: continube.azurecr.io/compliancecow/dev/cowlangservice:R239.0.73-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowlangservice@sha256:924e28c8f8f80b0f13d80ca37a390c54ee062c4e4c2954972fafe16af3154df2
+    lastState: {}
+    name: cowlangservice
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-01-04T12:14:35Z"
+  hostIP: 10.4.16.5
+  phase: Running
+  podIP: 10.4.16.20
+  podIPs:
+  - ip: 10.4.16.20
+  qosClass: BestEffort
+  startTime: "2024-01-04T12:14:26Z"

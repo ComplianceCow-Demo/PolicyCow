@@ -1,0 +1,18 @@
+ApiVersion: v1
+Data:
+  server.insecure: "true"
+Kind: ConfigMap
+Metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","data":{"server.insecure":"true"},"kind":"ConfigMap","metadata":{"annotations":null,"labels":{"app.kubernetes.io/name":"argocd-cmd-params-cm","app.kubernetes.io/part-of":"argocd"},"name":"argocd-cmd-params-cm","namespace":"argocd"}}\n'
+  creationTimestamp: "2023-11-22T06:06:21Z"
+  labels:
+    app.kubernetes.io/name: argocd-cmd-params-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-cmd-params-cm
+  namespace: argocd
+  resourceVersion: "176619814"
+  uid: 2b8935e3-9b58-4274-a4e6-4853b1ee9b54
+Name: argocd-cmd-params-cm
+metadata:
+  resourceVersion: testing

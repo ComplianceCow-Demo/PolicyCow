@@ -1,0 +1,19 @@
+ApiVersion: v1
+Data:
+  ca.crt: '-----BEGIN CERTIFICATE-----\nMIIE6DCCAtCgAwIBAgIQPkpBbty7gM+hU5e3o4NoCTANBgkqhkiG9w0BAQsFADAN\nMQswCQYDVQQDEwJjYTAgFw0yMTA5MjgwNTM0NDZaGA8yMDUxMDkyODA1NDQ0Nlow\nDTELMAkGA1UEAxMCY2EwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDf\niW1kPgQwsAHu3V9/S//cT85+oxXj1eIIA93brDbfWl88pyjaJHS02QxROcc7HZxL\nYKZoijVpoFahB7+X0GtYsnMOqjRZv7WhD6PbWOiMj+1TJ3hOW2XYfAxH4VOdKCc4\nAqFuZXM3+PBnj2Q9ZsP61pxcBehCICi8Ay/xJjNkk5a6uGI0MrL5zOBElmQgpX4D\n+i7RNWM1kBFEUDK864iXusJKH70ZuOWCHK8dB4HwF24QlBGgjTc87fl+jPiOXnYP\nRTHXPBoz1OvodyTC71v5vtUjlTVylQg6u8LBIyYD4Pqgd3G8eY/C91PsG6LxOOc+\nQ7yz0u1io1Jq9SFPJd7twuaF4fp0XQHPB99yTSa+7WRX0uWQ5g60DQyzTqIMq/64\nBHt47N05Lc0AwTlQ2BxAbHDl2/xseONMOmM+2DZGFG304ai90rOIXDTo8Mi87RFN\njZha7kSjQsP7QRAY2uoI3xU88ktsSck3R8TFtAqo5tNCiY1Q4ng8xP9jj48Z+XPo\nm58CNk4eTtqAPGQc61nTQ1hpOchz5BmErMmDqrqf4QUSn12LPSBQGqdz3uWLI8Ue\nAFKDxJgxqYZ0m6iBkLLtsnUoOiP9xCzs0xyKwGib8Livt5xmlUHBcwsnH02zm+8Q\nBQkm3KfsJRxBvx3IbnnWKzo8olk8kObUhvXgNXxTRwIDAQABo0IwQDAOBgNVHQ8B\nAf8EBAMCAqQwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUkklcof8U0kyELQN4\n7+cyJzmvVuQwDQYJKoZIhvcNAQELBQADggIBAG5csx8eM4N57/q9PBDkIzsgCko6\niw1VhvcJHKILyCa4lbc2QrRUnT59zZxCfJ1jf6F+v8NgTtSb/HnlXI44CtdJHqfL\ntcoTfidrbRr7wySQfFtHM8pKmtIDak9Z5q7WNdTmSt1K+XaD3E8djt2NtAkTK7zX\nhW4ZJ0diKi7pwrCB1xvk0mtKBzmMPKJFNw2d+SbNnL3ggWXYhrc4e0dCLWEoyDG6\nnluJJpH7JHxImdFErwLbaegEA+wyqJTPvPskdLJRvyxhRUuw0dR7OgX713aSS8rP\nZjhK8nZQNezLO15LZ3y0WbINFJrVsb4OyBh0E45dDaF8vSTDA+OUvL2EbJh1z5MY\nlL5roWDByzRwlntQ3lCYvAhNVyQqPZ9ZFy4tGIvIE/oVH9luv9veExVnsf67MK0N\nnSDaUI4ug0AqQFjHtGFT31W667YDDLfZ/rX2RcadTx296iXguUPDOtrveGzLjg5S\nePAzQ6CFCtMoNtQE7Wv+Mc7K5QyR++UjAgyiyhGNYBnDotD2tEnM60B/GgStDGJw\nNZ9vQOHxHqy9o85OeaaGLSyl+9F0ZENM/AYKi6IVG4Rk64TzfACNGhhqigrmYWux\nuo89BXDxDeaODuUpmw8Bk0hhGN0ooHb8ttrr1qT5TizCmazbqtY2uA/6EXGJfgQJ\n64qqVbYbABdcti0x\n-----END
+    CERTIFICATE-----\n'
+Kind: ConfigMap
+Metadata:
+  annotations:
+    kubernetes.io/description: Contains a CA bundle that can be used to verify the
+      kube-apiserver when using internal endpoints such as the internal service IP
+      or kubernetes.default.svc. No other usage is guaranteed across distributions
+      of Kubernetes clusters.
+  creationTimestamp: "2021-09-28T14:24:58Z"
+  name: kube-root-ca.crt
+  namespace: aks-command
+  resourceVersion: "91672643"
+  uid: 934537e6-dbd5-48ef-9625-ac2d2192f567
+Name: kube-root-ca.crt
+metadata:
+  resourceVersion: testing

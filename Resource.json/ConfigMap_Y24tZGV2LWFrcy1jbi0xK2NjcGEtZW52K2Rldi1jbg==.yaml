@@ -1,0 +1,28 @@
+ApiVersion: v1
+Data:
+  CN_CUST_DATA_SERVICE_HOST: cncustomerdataservice
+  CN_CUST_DATA_SERVICE_PORT: "34989"
+  CN_CUST_DATA_SERVICE_PROTOCOL: http
+  CN_REGISTER_HOST: cnregister
+  CN_REGISTER_PORT_NO: "8080"
+  DB_DRIVER: postgres
+  DB_HOST: ccpa-cndb
+  DB_NAME: ccpademo
+  DB_PASSWORD: ContiNube1234
+  DB_PORT: "5432"
+  DB_USER: continube
+Kind: ConfigMap
+Metadata:
+  annotations:
+    meta.helm.sh/release-name: dev-cn
+    meta.helm.sh/release-namespace: dev-cn
+  creationTimestamp: "2021-09-28T10:57:31Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: ccpa-env
+  namespace: dev-cn
+  resourceVersion: "29494"
+  uid: ca67d4f1-1024-4a48-9b1e-2e9eb7e00010
+Name: ccpa-env
+metadata:
+  resourceVersion: testing

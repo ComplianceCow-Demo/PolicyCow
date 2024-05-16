@@ -16,7 +16,7 @@ Metadata:
     kind: StatefulSet
     name: argocd-application-controller
     uid: 60efe84b-fdf8-4187-bfe3-f2e741f0574c
-  resourceVersion: 176620072
+  resourceVersion: 245773770
   uid: ea9c008b-761b-4203-9903-4abffa728075
 Name: argocd-application-controller-0
 Spec:

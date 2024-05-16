@@ -15,7 +15,7 @@ Metadata:
     kind: ReplicaSet
     name: argocd-applicationset-controller-85db65b7f8
     uid: 270e4f2b-bc4f-462e-a784-2a9e74cda769
-  resourceVersion: 176620012
+  resourceVersion: 245746277
   uid: 196bc1b4-6f3e-4b9f-9f3c-1de65e9a330b
 Name: argocd-applicationset-controller-85db65b7f8-spm9t
 Spec:

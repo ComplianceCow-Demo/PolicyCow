@@ -1,10 +1,11 @@
 ApiVersion: v1
 Kind: Pod
 Metadata:
-  creationTimestamp: "2023-11-22T06:06:22Z"
+  creationTimestamp: "2024-07-20T15:44:34Z"
   generateName: argocd-application-controller-
   labels:
     app.kubernetes.io/name: argocd-application-controller
+    apps.kubernetes.io/pod-index: 0
     controller-revision-hash: argocd-application-controller-cd9bb8974
     statefulset.kubernetes.io/pod-name: argocd-application-controller-0
   name: argocd-application-controller-0
@@ -16,8 +17,8 @@ Metadata:
     kind: StatefulSet
     name: argocd-application-controller
     uid: 60efe84b-fdf8-4187-bfe3-f2e741f0574c
-  resourceVersion: 245773770
-  uid: ea9c008b-761b-4203-9903-4abffa728075
+  resourceVersion: 278101848
+  uid: b1fef190-7f2d-4a80-85ac-c15bbb1006d9
 Name: argocd-application-controller-0
 Spec:
   affinity:
@@ -206,13 +207,13 @@ Spec:
     - mountPath: /home/argocd
       name: argocd-home
     - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      name: kube-api-access-jj92t
+      name: kube-api-access-rz2k7
       readOnly: true
     workingDir: /home/argocd
   dnsPolicy: ClusterFirst
   enableServiceLinks: true
   hostname: argocd-application-controller-0
-  nodeName: aks-nodepool1-29681506-vmss000006
+  nodeName: aks-nodepool1-29681506-vmss000007
   preemptionPolicy: PreemptLowerPriority
   priority: 0
   restartPolicy: Always
@@ -246,7 +247,7 @@ Spec:
         path: ca.crt
       optional: true
       secretName: argocd-repo-server-tls
-  - name: kube-api-access-jj92t
+  - name: kube-api-access-rz2k7
     projected:
       defaultMode: 420
       sources:
@@ -267,23 +268,23 @@ Spec:
 Status:
   conditions:
   - lastProbeTime: null
-    lastTransitionTime: "2023-11-22T06:06:22Z"
+    lastTransitionTime: "2024-07-20T15:44:34Z"
     status: true
     type: Initialized
   - lastProbeTime: null
-    lastTransitionTime: "2023-11-22T06:06:33Z"
+    lastTransitionTime: "2024-07-20T15:46:24Z"
     status: true
     type: Ready
   - lastProbeTime: null
-    lastTransitionTime: "2023-11-22T06:06:33Z"
+    lastTransitionTime: "2024-07-20T15:46:24Z"
     status: true
     type: ContainersReady
   - lastProbeTime: null
-    lastTransitionTime: "2023-11-22T06:06:22Z"
+    lastTransitionTime: "2024-07-20T15:44:34Z"
     status: true
     type: PodScheduled
   containerStatuses:
-  - containerID: containerd://24452546469b8ad566e8b70ad0c5cd332df3649623902f90bac2a8129fe3b774
+  - containerID: containerd://e1eb54439cdd32892dfeb6528df00c4c0c0fe61cf707ac9e88a4d53d1adafdc4
     image: quay.io/argoproj/argocd:v2.9.2
     imageID: quay.io/argoproj/argocd@sha256:8576d347f30fa4c56a0129d1c0a0f5ed1e75662f0499f1ed7e917c405fd909dc
     lastState: null
@@ -293,11 +294,11 @@ Status:
     started: true
     state:
       running:
-        startedAt: "2023-11-22T06:06:27Z"
-  hostIP: 10.4.16.107
+        startedAt: "2024-07-20T15:46:10Z"
+  hostIP: 10.4.16.158
   phase: Running
-  podIP: 10.4.16.144
+  podIP: 10.4.16.204
   podIPs:
-  - ip: 10.4.16.144
+  - ip: 10.4.16.204
   qosClass: BestEffort
-  startTime: "2023-11-22T06:06:22Z"
+  startTime: "2024-07-20T15:44:34Z"

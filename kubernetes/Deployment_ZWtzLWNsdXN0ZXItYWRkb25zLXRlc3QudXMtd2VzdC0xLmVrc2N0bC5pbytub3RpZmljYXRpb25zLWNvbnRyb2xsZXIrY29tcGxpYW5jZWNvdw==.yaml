@@ -22,8 +22,8 @@ spec:
         name: mysql
         securityContext:
           readOnlyRootFilesystem: false
-          runAsNonRoot: false
-          runAsUser: 0
+          runAsNonRoot: true
+          runAsUser: 1000
       - image: php:7.0-apache
         name: php
         securityContext:

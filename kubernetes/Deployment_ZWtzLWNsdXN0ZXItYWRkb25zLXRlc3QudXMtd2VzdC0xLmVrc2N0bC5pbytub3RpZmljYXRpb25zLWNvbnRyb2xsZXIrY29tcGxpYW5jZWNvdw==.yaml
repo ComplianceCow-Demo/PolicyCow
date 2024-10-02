@@ -21,18 +21,22 @@ spec:
         image: mysql
         name: mysql
         securityContext:
+          capabilities:
+            add: []
+            drop:
+            - ALL
           readOnlyRootFilesystem: false
-          runAsNonRoot: true
-          runAsUser: 1000
+          runAsNonRoot: false
+          runAsUser: 0
       - image: php:7.0-apache
         name: php
         securityContext:
           capabilities:
-            add:
-            - MAC_OVERRIDE
-            - AUDIT_CONTROL
-          runAsNonRoot: true
-          runAsUser: 1000
+            add: []
+            drop:
+            - ALL
+          runAsNonRoot: false
+          runAsUser: 0
         volumeMounts:
         - mountPath: /var/www/html
           name: site-data

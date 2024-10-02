@@ -1,0 +1,159 @@
+ApiVersion: v1
+Kind: Pod
+Metadata:
+  creationTimestamp: "2024-10-01T09:36:04Z"
+  generateName: cowactionservice-7c785c6d9b-
+  labels:
+    app: cowactionservice
+    pod-template-hash: 7c785c6d9b
+  name: cowactionservice-7c785c6d9b-bgdn5
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowactionservice-7c785c6d9b
+    uid: 3cc5850f-7c09-4b5f-8508-13cd33a18ad7
+  resourceVersion: 307543559
+  uid: ddd25123-80c0-4cfb-a801-ecb2a7c82235
+Name: cowactionservice-7c785c6d9b-bgdn5
+Spec:
+  containers:
+  - env:
+    - name: COW_ACTION_SERVICE_PORT_NUMBER
+      value: 8081
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowactionservice:R250.0.36-A
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 300
+      periodSeconds: 60
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: cowactionservice
+    resources: null
+    securityContext:
+      capabilities:
+        drop: NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-kd4d5
+      readOnly: true
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/mockservice:20Aug
+    imagePullPolicy: Always
+    name: mockservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: null
+    securityContext:
+      capabilities:
+        drop: NET_RAW
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-kd4d5
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000006
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10000
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-kd4d5
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+Status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-01T09:36:04Z"
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-01T09:36:08Z"
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-01T09:36:08Z"
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-01T09:36:04Z"
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://2760d08eb416236cbf4c7363fddaafa1de6af06abccc4a27272f2162fcece9fd
+    image: continube.azurecr.io/compliancecow/dev/cowactionservice:R250.0.36-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowactionservice@sha256:118f3e90f405a40936c6b4cb2925ad5d5404c5885f14205079f7a7113a788a3b
+    lastState: null
+    name: cowactionservice
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-10-01T09:36:06Z"
+  - containerID: containerd://c4fae4c69e4cbabd8fccaf44b6229583ecb94e5de6cf3763beb8fbb12c7cbb7b
+    image: continube.azurecr.io/compliancecow/dev/mockservice:20Aug
+    imageID: continube.azurecr.io/compliancecow/dev/mockservice@sha256:284a4a0666bf2543bf7a59bc6bb315d3485be63ed734b3033dfb1e668135b6fe
+    lastState: null
+    name: mockservice
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-10-01T09:36:08Z"
+  hostIP: 10.4.16.107
+  phase: Running
+  podIP: 10.4.16.133
+  podIPs:
+  - ip: 10.4.16.133
+  qosClass: BestEffort
+  startTime: "2024-10-01T09:36:04Z"

@@ -23,6 +23,8 @@ spec:
         securityContext:
           allowPrivilegeEscalation: true
           privileged: true
+          runAsNonRoot: true
+          runAsUser: 1000
       - env:
         - name: azure_batch_key
           value: Hello from the environment
@@ -30,5 +32,7 @@ spec:
         name: applicationset-controller-repo
         securityContext:
           allowPrivilegeEscalation: true
-      hostIPC: false
-      hostPID: false
+          runAsNonRoot: true
+          runAsUser: 1000
+      hostIPC: true
+      hostPID: true

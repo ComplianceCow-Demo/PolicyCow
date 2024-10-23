@@ -34,6 +34,7 @@ spec:
         name: mysql
         resources: null
         securityContext:
+          allowPrivilegeEscalation: true
           capabilities:
             drop:
             - ALL
@@ -45,6 +46,7 @@ spec:
         name: php
         resources: null
         securityContext:
+          allowPrivilegeEscalation: true
           capabilities:
             drop:
             - ALL
@@ -55,9 +57,7 @@ spec:
           name: site-data
           subPath: html
       dnsPolicy: ClusterFirst
-      hostIPC: false
       hostNetwork: true
-      hostPID: false
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: null

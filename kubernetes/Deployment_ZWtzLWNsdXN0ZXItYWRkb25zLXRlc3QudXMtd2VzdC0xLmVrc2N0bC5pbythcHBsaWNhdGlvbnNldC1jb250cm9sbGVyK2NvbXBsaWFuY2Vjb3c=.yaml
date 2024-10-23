@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: default
-  name: applicationset-controller
   labels:
     app: audit-pod
+  name: applicationset-controller
+  namespace: default
 spec:
   replicas: 3
   selector:
@@ -14,22 +14,23 @@ spec:
     metadata:
       labels:
         app: audit-pod
-    spec :
-      containers :
-        -
-          name : applicationset-controller
-          env :
-            -
-              name : ROOT_PASSWORD
-              value : "rootpasswd"
-          image : hashicorp/http-echo:0.2.3
-          securityContext :
-            allowPrivilegeEscalation : true
-            privileged: true
-        -
-          name : applicationset-controller-repo
-          env :
-            -
-              name : azure_batch_key
-              value : "Hello from the environment"
-          image : hashicorp/http-echo:0.2.3
+    spec:
+      containers:
+      - env:
+        - name: ROOT_PASSWORD
+          value: rootpasswd
+        image: hashicorp/http-echo:0.2.3
+        name: applicationset-controller
+        securityContext:
+          allowPrivilegeEscalation: true
+          privileged: true
+          runAsNonRoot: true
+          runAsUser: 1000
+      - env:
+        - name: azure_batch_key
+          value: Hello from the environment
+        image: hashicorp/http-echo:0.2.3
+        name: applicationset-controller-repo
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000

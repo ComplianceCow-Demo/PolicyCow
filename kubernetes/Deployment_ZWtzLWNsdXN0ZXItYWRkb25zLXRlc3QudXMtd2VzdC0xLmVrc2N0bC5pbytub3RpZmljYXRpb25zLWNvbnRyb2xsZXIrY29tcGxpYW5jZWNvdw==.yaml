@@ -21,23 +21,27 @@ spec:
         image: mysql
         name: mysql
         securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            add: []
+            drop:
+            - ALL
           readOnlyRootFilesystem: false
-          runAsNonRoot: false
-          runAsUser: 0
       - image: php:7.0-apache
         name: php
         securityContext:
+          allowPrivilegeEscalation: true
           capabilities:
-            add:
-            - MAC_OVERRIDE
-            - AUDIT_CONTROL
-          runAsNonRoot: false
-          runAsUser: 0
+            add: []
+            drop:
+            - ALL
         volumeMounts:
         - mountPath: /var/www/html
           name: site-data
           subPath: html
+      hostIPC: true
       hostNetwork: true
+      hostPID: true
       volumes:
       - name: site-data
         persistentVolumeClaim:

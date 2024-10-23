@@ -38,8 +38,6 @@ spec:
             drop:
             - ALL
           readOnlyRootFilesystem: false
-          runAsNonRoot: true
-          runAsUser: 1000
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       - image: php:7.0-apache
@@ -50,8 +48,6 @@ spec:
           capabilities:
             drop:
             - ALL
-          runAsNonRoot: true
-          runAsUser: 1000
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
@@ -59,7 +55,9 @@ spec:
           name: site-data
           subPath: html
       dnsPolicy: ClusterFirst
+      hostIPC: false
       hostNetwork: true
+      hostPID: false
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: null

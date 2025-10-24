@@ -1,0 +1,67 @@
+apiversion: apps/v1
+kind: Deployment
+metadata: '{''annotations'': {''deployment.kubernetes.io/revision'': ''2'', ''kubectl.kubernetes.io/last-applied-configuration'':
+  ''{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":null,"labels":{"app":"audit-pod"},"name":"dex-server","namespace":"compliancecow"},"spec":{"replicas":3,"selector":{"matchLabels":{"app":"audit-pod"}},"template":{"metadata":{"labels":{"app":"audit-pod"}},"spec":{"containers":[{"env":[{"name":"ROOT_PASSWORD","value":"rootpasswd"}],"image":"hashicorp/http-echo:0.2.3","name":"dex-server","securityContext":{"allowPrivilegeEscalation":false,"privileged":false}},{"env":[{"name":"azure_batch_key","value":"Hello
+  from the environment"}],"image":"hashicorp/http-echo:0.2.3","name":"dex-server-repo","securityContext":{"allowPrivilegeEscalation":false,"privileged":false}}]}}}}\n''},
+  ''creationTimestamp'': ''2024-10-02T17:03:12Z'', ''generation'': 2, ''labels'':
+  {''app'': ''audit-pod''}, ''name'': ''dex-server'', ''namespace'': ''compliancecow'',
+  ''resourceVersion'': ''22835590'', ''uid'': ''83cbac68-6c71-4fe7-aaf4-0df1d964d4f0''}'
+name: dex-server
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: audit-pod
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: audit-pod
+    spec:
+      containers:
+      - env:
+        - name: ROOT_PASSWORD
+          value: rootpasswd
+        image: hashicorp/http-echo:0.2.3
+        imagePullPolicy: IfNotPresent
+        name: dex-server
+        resources: null
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - env:
+        - name: azure_batch_key
+          value: Hello from the environment
+        image: hashicorp/http-echo:0.2.3
+        imagePullPolicy: IfNotPresent
+        name: dex-server-repo
+        resources: null
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      hostIPC: false
+      hostPID: false
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+status: '{''conditions'': [{''lastTransitionTime'': ''2024-10-02T17:03:12Z'', ''lastUpdateTime'':
+  ''2024-10-02T17:03:12Z'', ''message'': ''Deployment does not have minimum availability.'',
+  ''reason'': ''MinimumReplicasUnavailable'', ''status'': ''false'', ''type'': ''Available''},
+  {''lastTransitionTime'': ''2024-12-11T13:31:34Z'', ''lastUpdateTime'': ''2024-12-11T13:31:34Z'',
+  ''message'': ''ReplicaSet "dex-server-6c854fb9f4" has timed out progressing.'',
+  ''reason'': ''ProgressDeadlineExceeded'', ''status'': ''false'', ''type'': ''Progressing''}],
+  ''observedGeneration'': 2, ''replicas'': 4, ''unavailableReplicas'': 4, ''updatedReplicas'':
+  2}'

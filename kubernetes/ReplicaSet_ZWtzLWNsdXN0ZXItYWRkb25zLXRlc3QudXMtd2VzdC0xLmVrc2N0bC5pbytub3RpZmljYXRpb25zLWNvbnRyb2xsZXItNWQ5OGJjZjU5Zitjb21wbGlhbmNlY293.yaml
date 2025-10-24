@@ -1,0 +1,83 @@
+apiversion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    deployment.kubernetes.io/desired-replicas: 1
+    deployment.kubernetes.io/max-replicas: 2
+    deployment.kubernetes.io/revision: 2
+  creationTimestamp: "2024-10-23T11:24:20Z"
+  generation: 1
+  labels:
+    app: goproxy
+    pod-template-hash: 5d98bcf59f
+  name: notifications-controller-5d98bcf59f
+  namespace: compliancecow
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Deployment
+    name: notifications-controller
+    uid: e28dd096-3f15-4a70-b0ad-20e22d16d032
+  resourceVersion: 7441307
+  uid: 2aed145d-c7d8-41e4-ad5f-69504d0fc02c
+name: notifications-controller-5d98bcf59f
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goproxy
+      pod-template-hash: 5d98bcf59f
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: goproxy
+        pod-template-hash: 5d98bcf59f
+      name: goproxy
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpasswd
+        image: mysql
+        imagePullPolicy: Always
+        name: mysql
+        resources: null
+        securityContext:
+          allowPrivilegeEscalation: true
+          readOnlyRootFilesystem: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - image: php:7.0-apache
+        imagePullPolicy: IfNotPresent
+        name: php
+        resources: null
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            add:
+            - MAC_OVERRIDE
+            - AUDIT_CONTROL
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: site-data
+          subPath: html
+      dnsPolicy: ClusterFirst
+      hostIPC: false
+      hostNetwork: true
+      hostPID: false
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: site-data
+        persistentVolumeClaim:
+          claimName: my-lamp-site-data
+status:
+  fullyLabeledReplicas: 1
+  observedGeneration: 1
+  replicas: 1

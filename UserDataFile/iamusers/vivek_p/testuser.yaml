@@ -18,10 +18,10 @@ ActiveKeys:
     LegacyAccessKeyId: AK1AQSDFCOUZSDIEWHEH
     OwnerRoles:
       - arn:aws:iam::066744120626:user/testuser
+DeactivatedKeys:
   - Name: TestUserAWSAccessKeyOne
     LegacyAccessKeyId: AKIA2ASDIJHHASFIWNEF
     OwnerRoles:
       - arn:aws:iam::066744120626:user/testuser
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

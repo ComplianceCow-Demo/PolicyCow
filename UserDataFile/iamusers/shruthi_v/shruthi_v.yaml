@@ -8,11 +8,11 @@ Name: shruthi_v
 Path: /
 Owner: shruthi.v@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAPNOJRT2BAZODP62Z
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/shruthi_v  
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/shruthi_v
 DeletedKeys: []
 ResourceTags: []

@@ -8,11 +8,11 @@ Name: deepika_n
 Path: /
 Owner: deepika.n@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAD0BNI7A86JZEX2K8
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/deepika_n 
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/deepika_n
 DeletedKeys: []
 ResourceTags: []

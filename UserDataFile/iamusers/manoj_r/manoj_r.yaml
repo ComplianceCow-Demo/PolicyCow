@@ -8,11 +8,11 @@ Name: manoj_r
 Path: /
 Owner: manoj.r@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIA63X6NG56TVHNE9DI
     OwnerRoles:
       - arn:aws:iam::066744120626:user/manoj_r
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

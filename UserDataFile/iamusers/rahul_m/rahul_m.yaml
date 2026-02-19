@@ -8,11 +8,11 @@ Name: rahul_m
 Path: /
 Owner: rahul.m@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAKC0BMUYP9FUV7D84
     OwnerRoles:
       - arn:aws:iam::066744120626:user/rahul_m
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

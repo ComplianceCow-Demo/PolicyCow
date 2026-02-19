@@ -8,11 +8,11 @@ Name: divya_h
 Path: /
 Owner: divya.h@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAHPV2Z9SFJB120QL8
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/divya_h  
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/divya_h
 DeletedKeys: []
 ResourceTags: []

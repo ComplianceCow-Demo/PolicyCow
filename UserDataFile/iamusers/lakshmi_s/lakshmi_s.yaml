@@ -8,11 +8,11 @@ Name: lakshmi_s
 Path: /
 Owner: lakshmi.s@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIA3EU5XTJ8CGWCY83L
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/lakshmi_s 
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/lakshmi_s
 DeletedKeys: []
 ResourceTags: []

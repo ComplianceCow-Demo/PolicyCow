@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: harish_j
+IncludeAccounts:
+  - harish_j
+Active: true
+Name: harish_j
+Path: /
+Owner: harish.j@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIADSTT11EUF6PNQDVS
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/harish_j 
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

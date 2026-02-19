@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: karthik_m
+IncludeAccounts:
+  - karthik_m
+Active: true
+Name: karthik_m
+Path: /
+Owner: karthik.m@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAEKTEIH3PMKFBTZ4L
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/karthik_m
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

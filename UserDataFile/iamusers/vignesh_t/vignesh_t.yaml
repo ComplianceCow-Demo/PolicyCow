@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: vignesh_t
+IncludeAccounts:
+  - vignesh_t
+Active: true
+Name: vignesh_t
+Path: /
+Owner: vignesh.t@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAAT8JJM4O36L0YWV5
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/vignesh_t
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

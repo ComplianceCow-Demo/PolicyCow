@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: arjun_k
+IncludeAccounts:
+  - arjun_k
+Active: true
+Name: arjun_k
+Path: /
+Owner: arjun.k@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAXL2D33IYU95HCJ3E
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/arjun_k 
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

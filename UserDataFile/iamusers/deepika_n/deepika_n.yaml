@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: deepika_n
+IncludeAccounts:
+  - deepika_n
+Active: true
+Name: deepika_n
+Path: /
+Owner: deepika.n@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAD0BNI7A86JZEX2K8
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/deepika_n 
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

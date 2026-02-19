@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: ananya_p
+IncludeAccounts:
+  - ananya_p
+Active: true
+Name: ananya_p
+Path: /
+Owner: ananya.p@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIA7A9H3YVI44Y8AP5U
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/ananya_p  
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

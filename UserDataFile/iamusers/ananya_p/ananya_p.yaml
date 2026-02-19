@@ -8,11 +8,11 @@ Name: ananya_p
 Path: /
 Owner: ananya.p@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIA7A9H3YVI44Y8AP5U
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/ananya_p  
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/ananya_p
 DeletedKeys: []
 ResourceTags: []

@@ -8,11 +8,11 @@ Name: pooja_k
 Path: /
 Owner: pooja.k@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIA0T39E9HHECG602IS
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/pooja_k  
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/pooja_k
 DeletedKeys: []
 ResourceTags: []

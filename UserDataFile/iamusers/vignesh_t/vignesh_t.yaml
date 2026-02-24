@@ -8,11 +8,11 @@ Name: vignesh_t
 Path: /
 Owner: vignesh.t@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAAT8JJM4O36L0YWV5
     OwnerRoles:
       - arn:aws:iam::066744120626:user/vignesh_t
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

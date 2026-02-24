@@ -8,11 +8,11 @@ Name: suresh_b
 Path: /
 Owner: suresh.b@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAMARNL3BP1YM6EU1T
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/suresh_b 
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/suresh_b
 DeletedKeys: []
 ResourceTags: []

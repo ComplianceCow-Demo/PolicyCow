@@ -8,11 +8,11 @@ Name: swathi_l
 Path: /
 Owner: swathi.l@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIA4RWZ5E2EMTMLPXMU
     OwnerRoles:
       - arn:aws:iam::066744120626:user/swathi_l
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

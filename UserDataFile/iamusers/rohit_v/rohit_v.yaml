@@ -8,11 +8,11 @@ Name: rohit_v
 Path: /
 Owner: rohit.v@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAYZAB6DN97IXWH4BX
     OwnerRoles:
       - arn:aws:iam::066744120626:user/rohit_v
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

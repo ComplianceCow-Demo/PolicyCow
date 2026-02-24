@@ -8,11 +8,11 @@ Name: priya_s
 Path: /
 Owner: priya.s@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAPLQEER97JCTOO7U2
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/priya_s  
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/priya_s
 DeletedKeys: []
 ResourceTags: []

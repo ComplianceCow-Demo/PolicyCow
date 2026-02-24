@@ -8,11 +8,11 @@ Name: meera_d
 Path: /
 Owner: meera.d@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIA3AHKJ91UIGFH0WR0
     OwnerRoles:
       - arn:aws:iam::066744120626:user/meera_d
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

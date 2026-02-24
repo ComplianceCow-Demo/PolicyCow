@@ -8,11 +8,11 @@ Name: harish_j
 Path: /
 Owner: harish.j@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIADSTT11EUF6PNQDVS
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/harish_j 
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/harish_j
 DeletedKeys: []
 ResourceTags: []

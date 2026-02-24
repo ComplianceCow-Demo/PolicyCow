@@ -8,11 +8,11 @@ Name: akash_g
 Path: /
 Owner: akash.g@continube.com
 Policies: []
-ActiveKeys:
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAGRX7MKJ3SU76Y4A8
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/akash_g  
-DeactivatedKeys: []
+      - arn:aws:iam::066744120626:user/akash_g
 DeletedKeys: []
 ResourceTags: []

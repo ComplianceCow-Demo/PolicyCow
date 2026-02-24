@@ -9,15 +9,15 @@ Name: rufus
 Path: /
 Owner: rufus.p@continube.com
 Policies: []
-ActiveKeys: 
+ActiveKeys:
   - Name: TestAWSAccessKeyNew
     LegacyAccessKeyId: AKIAABCDE12345FGHIJK
     OwnerRoles:
       - arn:aws:iam::066744120626:user/rufus
+DeactivatedKeys:
   - Name: TestAWSAccessKey
     LegacyAccessKeyId: AAKIAXYZ987654LMNOPQR
     OwnerRoles:
       - arn:aws:iam::066744120626:user/rufus
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

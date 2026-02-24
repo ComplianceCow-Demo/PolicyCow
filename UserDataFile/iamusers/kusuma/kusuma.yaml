@@ -1,0 +1,23 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+
+TemplateName: kusuma
+IncludeAccounts:
+  - kusuma
+Active: true
+Name: kusuma
+Path: /
+Owner: kusuma.s@continube.com
+Policies: []
+ActiveKeys: 
+  - Name: TestAWSAccessKeyNew
+    LegacyAccessKeyId: AKIAZXCVMNBASDFGHJKL
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/kusuma
+  - Name: TestAWSAccessKey
+    LegacyAccessKeyId: AKIALKJHGFDSAMNBVCXZ
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/kusuma
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

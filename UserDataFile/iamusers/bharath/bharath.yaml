@@ -1,0 +1,23 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+
+TemplateName: bharath
+IncludeAccounts:
+  - bharath
+Active: true
+Name: bharath
+Path: /
+Owner: bharath.r@continube.com
+Policies: []
+ActiveKeys: 
+  - Name: TestAWSAccessKeyNew
+    LegacyAccessKeyId: AKIAQ1W2E3R4T5Y6U7I8
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/bharath
+  - Name: TestAWSAccessKey
+    LegacyAccessKeyId: AKIAP9O8I7U6Y5T4R3E2
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/bharath
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

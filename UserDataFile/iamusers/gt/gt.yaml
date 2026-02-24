@@ -1,0 +1,23 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+
+TemplateName: gt
+IncludeAccounts:
+  - gt
+Active: true
+Name: gt
+Path: /
+Owner: praveen.kj@continube.com
+Policies: []
+ActiveKeys: 
+  - Name: TestAWSAccessKeyNew
+    LegacyAccessKeyId: AKIAAAAABBBBCCCCDDDD
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/gt
+  - Name: TestAWSAccessKey
+    LegacyAccessKeyId: AKIA1111222233334444
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/gt
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

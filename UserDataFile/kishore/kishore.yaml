@@ -1,0 +1,22 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: kishore
+IncludeAccounts:
+  - kishore
+Active: true
+Name: kishore
+Path: /
+Owner: kishore.r@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIA1A2B3C4D5E6F7G8H
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/kishore
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIA9Z8Y7X6W5V4U3T2S
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/kishore
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

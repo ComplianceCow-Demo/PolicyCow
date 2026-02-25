@@ -7,7 +7,7 @@ IncludeAccounts:
 Active: true
 Name: mani
 Path: /
-Owner: santhosh.p@continube.com
+Owner: mani.m@continube.com
 Policies: []
 ActiveKeys:
   - Name: TestAWSAccessKeyNew

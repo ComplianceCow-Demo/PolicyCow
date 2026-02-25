@@ -1,6 +1,7 @@
 # Migrated automatically as part of INFRASEC-4286
 # Has AmazonS3FullAccess via an IAM Group
 
+
 TemplateName: rules_tester
 IncludeAccounts:
   - santhosh_p
@@ -14,10 +15,10 @@ ActiveKeys:
     LegacyAccessKeyId: AKIASKNEIBFWENTPMSAN
     OwnerRoles:
       - arn:aws:iam::066744120626:user/rules_tester
-DeactivatedKeys:
   - Name: TestAWSAccessKeyNew
     LegacyAccessKeyId: AKIABUEBRIWNEWOJNDIR
     OwnerRoles:
       - arn:aws:iam::066744120626:user/rules_tester
+DeactivatedKeys:[]
 DeletedKeys: []
 ResourceTags: []

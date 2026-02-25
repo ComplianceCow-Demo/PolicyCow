@@ -9,8 +9,7 @@ Name: kishore
 Path: /
 Owner: kishore.r@continube.com
 Policies: []
-ActiveKeys: []
-DeactivatedKeys:
+ActiveKeys: 
   - Name: TestAWSAccessKey
     LegacyAccessKeyId: AKIA9Z8Y7X6W5V4U3T2S
     OwnerRoles:
@@ -18,6 +17,7 @@ DeactivatedKeys:
   - Name: TestAWSAccessKeyNew
     LegacyAccessKeyId: AKIA1A2B3C4D5E6F7G8H
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/kishore
+     - arn:aws:iam::066744120626:user/kishore
+DeactivatedKeys:[]
 DeletedKeys: []
 ResourceTags: []

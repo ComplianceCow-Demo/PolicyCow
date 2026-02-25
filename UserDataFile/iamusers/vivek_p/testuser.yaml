@@ -1,6 +1,7 @@
 # Migrated automatically as part of INFRASEC-4286
 # Has AmazonS3FullAccess via an IAM Group
 
+
 TemplateName: testuser
 IncludeAccounts:
   - vivek_p
@@ -18,10 +19,10 @@ ActiveKeys:
     LegacyAccessKeyId: AK1AQSDFCOUZSDIEWHEH
     OwnerRoles:
       - arn:aws:iam::066744120626:user/testuser
-DeactivatedKeys:
   - Name: TestUserAWSAccessKeyOne
     LegacyAccessKeyId: AKIA2ASDIJHHASFIWNEF
     OwnerRoles:
       - arn:aws:iam::066744120626:user/testuser
+DeactivatedKeys:[]
 DeletedKeys: []
 ResourceTags: []

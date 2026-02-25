@@ -9,8 +9,7 @@ Name: kusuma
 Path: /
 Owner: kusuma.s@continube.com
 Policies: []
-ActiveKeys: []
-DeactivatedKeys:
+ActiveKeys: 
   - Name: TestAWSAccessKey
     LegacyAccessKeyId: AKIALKJHGFDSAMNBVCXZ
     OwnerRoles:
@@ -19,5 +18,6 @@ DeactivatedKeys:
     LegacyAccessKeyId: AKIAZXCVMNBASDFGHJKL
     OwnerRoles:
       - arn:aws:iam::066744120626:user/kusuma
+DeactivatedKeys:[]
 DeletedKeys: []
 ResourceTags: []

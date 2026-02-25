@@ -9,15 +9,15 @@ Name: mani
 Path: /
 Owner: santhosh.p@continube.com
 Policies: []
-ActiveKeys: 
+ActiveKeys:
   - Name: TestAWSAccessKeyNew
     LegacyAccessKeyId: AKIA1234ABCD5678EFGH
     OwnerRoles:
       - arn:aws:iam::066744120626:user/mani
+DeactivatedKeys:
   - Name: TestAWSAccessKey
     LegacyAccessKeyId: AKIAZX12CV34BN56ML78
     OwnerRoles:
       - arn:aws:iam::066744120626:user/mani
-DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

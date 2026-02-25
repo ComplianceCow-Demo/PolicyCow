@@ -9,8 +9,7 @@ Name: bharath
 Path: /
 Owner: bharath.r@continube.com
 Policies: []
-ActiveKeys: []
-DeactivatedKeys:
+ActiveKeys: 
   - Name: TestAWSAccessKey
     LegacyAccessKeyId: AKIAP9O8I7U6Y5T4R3E2
     OwnerRoles:
@@ -19,5 +18,6 @@ DeactivatedKeys:
     LegacyAccessKeyId: AKIAQ1W2E3R4T5Y6U7I8
     OwnerRoles:
       - arn:aws:iam::066744120626:user/bharath
+DeactivatedKeys:[]
 DeletedKeys: []
 ResourceTags: []

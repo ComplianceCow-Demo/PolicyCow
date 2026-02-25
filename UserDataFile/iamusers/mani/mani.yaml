@@ -9,8 +9,8 @@ Name: mani
 Path: /
 Owner: mani.m@continube.com
 Policies: []
-ActiveKeys: []
-DeactivatedKeys:
+ActiveKeys:
+
   - Name: TestAWSAccessKey
     LegacyAccessKeyId: AKIAZX12CV34BN56ML78
     OwnerRoles:
@@ -19,5 +19,7 @@ DeactivatedKeys:
     LegacyAccessKeyId: AKIA1234ABCD5678EFGH
     OwnerRoles:
       - arn:aws:iam::066744120626:user/mani
+      
+DeactivatedKeys:[]
 DeletedKeys: []
 ResourceTags: []

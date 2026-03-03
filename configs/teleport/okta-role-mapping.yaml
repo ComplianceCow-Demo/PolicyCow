@@ -16,7 +16,7 @@ groups:
         - nodes-ssh-prod
     legacyRoles: []
 
-  - oktaGroup: sec-teleport-prod-seceng
+  - oktaGroup: sec-teleport-nonprod-seceng
     libraryRoles:
       assigned:
         - cw-cluster-read

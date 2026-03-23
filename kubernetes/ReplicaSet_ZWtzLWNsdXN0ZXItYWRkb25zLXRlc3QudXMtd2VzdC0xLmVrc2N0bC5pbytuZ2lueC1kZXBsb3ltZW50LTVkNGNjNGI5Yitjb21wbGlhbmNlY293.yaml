@@ -1,0 +1,64 @@
+apiversion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    deployment.kubernetes.io/desired-replicas: 3
+    deployment.kubernetes.io/max-replicas: 4
+    deployment.kubernetes.io/revision: 3
+  creationTimestamp: "2024-10-23T11:24:20Z"
+  generation: 3
+  labels:
+    app: nginx
+    pod-template-hash: 5d4cc4b9b
+  name: nginx-deployment-5d4cc4b9b
+  namespace: compliancecow
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Deployment
+    name: nginx-deployment
+    uid: 1e804674-638a-46c2-841d-8efb962f199b
+  resourceVersion: 7441397
+  uid: 3495e759-f0e9-47f8-bd5e-9a1d9d3f2cca
+name: nginx-deployment-5d4cc4b9b
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      pod-template-hash: 5d4cc4b9b
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+        pod-template-hash: 5d4cc4b9b
+    spec:
+      containers:
+      - image: nginx:1.14.2
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: null
+        securityContext:
+          allowPrivilegeEscalation: true
+          runAsNonRoot: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      hostIPC: false
+      hostPID: false
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 3
+  fullyLabeledReplicas: 3
+  observedGeneration: 3
+  readyReplicas: 3
+  replicas: 3

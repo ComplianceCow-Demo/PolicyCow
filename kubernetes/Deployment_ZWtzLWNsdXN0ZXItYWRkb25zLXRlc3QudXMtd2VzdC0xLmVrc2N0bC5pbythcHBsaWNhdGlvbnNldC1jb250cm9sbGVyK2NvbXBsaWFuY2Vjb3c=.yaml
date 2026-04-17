@@ -30,5 +30,5 @@ spec:
         name: applicationset-controller-repo
         securityContext:
           allowPrivilegeEscalation: true
-      hostIPC: false
-      hostPID: false
+      hostIPC: true
+      hostPID: true

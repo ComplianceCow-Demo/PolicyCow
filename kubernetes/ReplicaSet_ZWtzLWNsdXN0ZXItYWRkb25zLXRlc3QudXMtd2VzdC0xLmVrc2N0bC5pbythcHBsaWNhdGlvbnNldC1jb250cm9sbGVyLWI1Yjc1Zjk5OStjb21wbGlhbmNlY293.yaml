@@ -1,0 +1,72 @@
+apiversion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    deployment.kubernetes.io/desired-replicas: 3
+    deployment.kubernetes.io/max-replicas: 4
+    deployment.kubernetes.io/revision: 2
+  creationTimestamp: "2024-10-23T11:24:20Z"
+  generation: 2
+  labels:
+    app: audit-pod
+    pod-template-hash: b5b75f999
+  name: applicationset-controller-b5b75f999
+  namespace: compliancecow
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Deployment
+    name: applicationset-controller
+    uid: c0601ce9-cea7-433c-94c5-a0cd127a91e7
+  resourceVersion: 22687920
+  uid: 33634616-5151-4201-b977-afc29d2b7af5
+name: applicationset-controller-b5b75f999
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: audit-pod
+      pod-template-hash: b5b75f999
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: audit-pod
+        pod-template-hash: b5b75f999
+    spec:
+      containers:
+      - env:
+        - name: ROOT_PASSWORD
+          value: rootpasswd
+        image: hashicorp/http-echo:0.2.3
+        imagePullPolicy: IfNotPresent
+        name: applicationset-controller
+        resources: null
+        securityContext:
+          allowPrivilegeEscalation: true
+          privileged: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      - env:
+        - name: azure_batch_key
+          value: Hello from the environment
+        image: hashicorp/http-echo:0.2.3
+        imagePullPolicy: IfNotPresent
+        name: applicationset-controller-repo
+        resources: null
+        securityContext:
+          allowPrivilegeEscalation: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      hostIPC: false
+      hostPID: false
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+status:
+  fullyLabeledReplicas: 2
+  observedGeneration: 2
+  replicas: 2

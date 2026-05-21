@@ -9,8 +9,7 @@ Name: rules_tester
 Path: /
 Owner: santhosh.p@continube.com
 Policies: []
-ActiveKeys: []
-DeactivatedKeys:
+ActiveKeys: 
   - Name: TestAWSAccessKeyNew
     LegacyAccessKeyId: AKIABUEBRIWNEWOJNDIR
     OwnerRoles:
@@ -19,5 +18,6 @@ DeactivatedKeys:
     LegacyAccessKeyId: AKIASKNEIBFWENTPMSAN
     OwnerRoles:
       - arn:aws:iam::066744120626:user/rules_tester
+DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

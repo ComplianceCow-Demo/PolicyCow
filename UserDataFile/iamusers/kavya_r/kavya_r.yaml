@@ -8,11 +8,11 @@ Name: kavya_r
 Path: /
 Owner: kavya.r@continube.com
 Policies: []
-ActiveKeys: []
-DeactivatedKeys:
+ActiveKeys: 
   - Name: TestAWSAccessKeyTwo
     LegacyAccessKeyId: AKIAMJJ9T3XVO05LV680
     OwnerRoles:
       - arn:aws:iam::066744120626:user/kavya_r
+DeactivatedKeys: []
 DeletedKeys: []
 ResourceTags: []

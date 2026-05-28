@@ -1,0 +1,19 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: lokesh_deactivate
+IncludeAccounts:
+  - lokesh_deactivate
+Active: true
+Name: lokesh_deactivate
+Path: /
+Owner: arjun.k@continube.com
+Policies: []
+ActiveKeys: []
+DeactivatedKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAXL2D33IYU95HCJ3E
+    OwnerRoles:
+      - 'arn:aws:iam::066744120626:user/arjun_k'
+DeletedKeys: []
+ResourceTags: []
+

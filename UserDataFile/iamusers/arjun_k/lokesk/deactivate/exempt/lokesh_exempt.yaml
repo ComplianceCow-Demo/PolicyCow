@@ -1,18 +1,19 @@
 # Migrated automatically as part of INFRASEC-4286
 # Has AmazonS3FullAccess via an IAM Group
-TemplateName: kavya_r
+TemplateName: lokesh_exempt
 IncludeAccounts:
-  - kavya_r
+  - lokesh_exempt
 Active: true
-Name: kavya_r
+Name: lokesh_exempt
 Path: /
-Owner: kavya.r@continube.com
+Owner: arjun.k@continube.com
 Policies: []
-ActiveKeys: 
+ActiveKeys: []
+DeactivatedKeys:
   - Name: TestAWSAccessKeyTwo
-    LegacyAccessKeyId: AKIAMJJ9T3XVO05LV680
+    LegacyAccessKeyId: AKIAXL2D33IYU95HCJ3E
     OwnerRoles:
-      - arn:aws:iam::066744120626:user/kavya_r
-DeactivatedKeys: []
+      - 'arn:aws:iam::066744120626:user/arjun_k'
 DeletedKeys: []
 ResourceTags: []
+

@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: rohit_v
+IncludeAccounts:
+  - rohit_v
+Active: true
+Name: rohit_v
+Path: /
+Owner: rohit.v@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAYZAB6DN97IXWH4BX
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/rohit_v
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

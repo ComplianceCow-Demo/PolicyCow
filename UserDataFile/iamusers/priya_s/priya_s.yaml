@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: priya_s
+IncludeAccounts:
+  - priya_s
+Active: true
+Name: priya_s
+Path: /
+Owner: priya.s@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAPLQEER97JCTOO7U2
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/priya_s  
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

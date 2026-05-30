@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: test_saranya
+IncludeAccounts:
+  - saranya_r
+Active: true
+Name: test_saranya
+Path: /
+Owner: saranya.r@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAHPV2SDGISDGQL8
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/test_saranya  
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

@@ -1,0 +1,17 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: newuser
+IncludeAccounts:
+  - newuser
+Active: true
+Name: newuser
+Path: /
+Owner: NW.g@continube.com
+Policies: []
+- Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAGRX7MKJ3SU76Y4daA8
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/newuser
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

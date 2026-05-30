@@ -1,0 +1,23 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+
+TemplateName: pk
+IncludeAccounts:
+  - pk
+Active: true
+Name: pk
+Path: /
+Owner: praveen.kj@continube.com
+Policies: []
+ActiveKeys: []
+DeactivatedKeys:
+  - Name: TestAWSAccessKeyNew
+
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/pk
+  - Name: TestAWSAccessKey
+
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/pk
+DeletedKeys: []
+ResourceTags: []

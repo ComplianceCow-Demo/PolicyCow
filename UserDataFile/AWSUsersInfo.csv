@@ -1,0 +1,19 @@
+AWS Account Name,Account ID,Aliases,Owner,Email,Account Type,Accessible to SIRT
+AnimalLogic-Dev-01,837492615023,AnimalLogic-Dev-01,AnimalLogic,awsroot-animallogic-dev-01@compliancecow.com,Flex,No
+ScanLine-Prod-02,512837492610,ScanLine-Prod-02,ScanLine,awsroot-scanline-prod-02@compliancecow.com,Flex,Yes
+SparyFox-Test-03,294857362819,SparyFox-Test-03,SparyFox,awsroot-sparyfox-test-03@compliancecow.com,Flex,No
+BossFight-Staging-04,675849302145,BossFight-Staging-04,BossFight,awsroot-bossfight-staging-04@compliancecow.com,Flex,No
+NextGames-Sandbox-05,938475612039,NextGames-Sandbox-05,NextGames,awsroot-nextgames-sandbox-05@compliancecow.com,Flex,Yes
+NightSchool-DevOps-06,456789123045,NightSchool-DevOps-06,NightSchool,awsroot-nightschool-devops-06@compliancecow.com,Flex,No
+RoaldDahl-Prod-07,789012345672,RoaldDahl-Prod-07,RoaldDahl,awsroot-roalddahl-prod-07@compliancecow.com,Flex,No
+AnimalLogic-Analytics-08,345678901238,AnimalLogic-Analytics-08,AnimalLogic,awsroot-animallogic-analytics-08@compliancecow.com,Flex,Yes
+ScanLine-Data-09,901234567894,ScanLine-Data-09,ScanLine,awsroot-scanline-data-09@compliancecow.com,Flex,No
+SparyFox-Media-10,234567890127,SparyFox-Media-10,SparyFox,awsroot-sparyfox-media-10@compliancecow.com,Flex,No
+BossFight-Gaming-11,678901234568,BossFight-Gaming-11,BossFight,awsroot-bossfight-gaming-11@compliancecow.com,Flex,Yes 
+NextGames-Web-12,123456789034,NextGames-Web-12,NextGames,awsroot-nextgames-web-12@compliancecow.com,Flex,No
+NightSchool-Edu-13,890123456785,NightSchool-Edu-13,NightSchool,awsroot-nightschool-edu-13@compliancecow.com,Flex,No
+RoaldDahl-Stories-14,567890123459,RoaldDahl-Stories-14,RoaldDahl,awsroot-roalddahl-stories-14@compliancecow.com,Flex,Yes
+AnimalLogic-Render-15,432109876512,AnimalLogic-Render-15,AnimalLogic,awsroot-animallogic-render-15@compliancecow.com,Flex,No
+ScanLine-VFX-16,987654321098,ScanLine-VFX-16,ScanLine,awsroot-scanline-vfx-16@compliancecow.com,Flex,No
+SparyFox-Animation-17,210987654327,SparyFox-Animation-17,SparyFox,awsroot-sparyfox-animation-17@compliancecow.com,Flex,Yes
+BossFight-Engine-18,654321098765,BossFight-Engine-18,BossFight,awsroot-bossfight-engine-18@compliancecow.com,Flex,No

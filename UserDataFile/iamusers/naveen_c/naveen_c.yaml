@@ -1,0 +1,18 @@
+# Migrated automatically as part of INFRASEC-4286
+# Has AmazonS3FullAccess via an IAM Group
+TemplateName: naveen_c
+IncludeAccounts:
+  - naveen_c
+Active: true
+Name: naveen_c
+Path: /
+Owner: naveen.c@continube.com
+Policies: []
+ActiveKeys:
+  - Name: TestAWSAccessKeyTwo
+    LegacyAccessKeyId: AKIAXACQA4QN58CR0NRZ
+    OwnerRoles:
+      - arn:aws:iam::066744120626:user/naveen_c 
+DeactivatedKeys: []
+DeletedKeys: []
+ResourceTags: []

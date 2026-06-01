@@ -1,10 +1,10 @@
 # Migrated automatically as part of INFRASEC-4286
 # Has AmazonS3FullAccess via an IAM Group
-TemplateName: arjun_k
+TemplateName: lokesh_deactivate
 IncludeAccounts:
-  - arjun_k
+  - lokesh_deactivate
 Active: true
-Name: arjun_k
+Name: lokesh_deactivate
 Path: /
 Owner: arjun.k@continube.com
 Policies: []

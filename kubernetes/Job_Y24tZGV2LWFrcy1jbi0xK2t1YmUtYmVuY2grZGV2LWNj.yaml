@@ -1,0 +1,145 @@
+apiversion: batch/v1
+kind: Job
+metadata: '{''annotations'': {''kubectl.kubernetes.io/last-applied-configuration'':
+  ''{"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":null,"name":"kube-bench","namespace":"dev-cc"},"spec":{"template":{"metadata":{"labels":{"app":"kube-bench"}},"spec":{"containers":[{"command":["kube-bench"],"image":"docker.io/aquasec/kube-bench:v0.8.0","name":"kube-bench","volumeMounts":[{"mountPath":"/var/lib/cni","name":"var-lib-cni","readOnly":true},{"mountPath":"/var/lib/etcd","name":"var-lib-etcd","readOnly":true},{"mountPath":"/var/lib/kubelet","name":"var-lib-kubelet","readOnly":true},{"mountPath":"/var/lib/kube-scheduler","name":"var-lib-kube-scheduler","readOnly":true},{"mountPath":"/var/lib/kube-controller-manager","name":"var-lib-kube-controller-manager","readOnly":true},{"mountPath":"/etc/systemd","name":"etc-systemd","readOnly":true},{"mountPath":"/lib/systemd/","name":"lib-systemd","readOnly":true},{"mountPath":"/srv/kubernetes/","name":"srv-kubernetes","readOnly":true},{"mountPath":"/etc/kubernetes","name":"etc-kubernetes","readOnly":true},{"mountPath":"/usr/local/mount-from-host/bin","name":"usr-bin","readOnly":true},{"mountPath":"/etc/cni/net.d/","name":"etc-cni-netd","readOnly":true},{"mountPath":"/opt/cni/bin/","name":"opt-cni-bin","readOnly":true}]}],"hostPID":true,"restartPolicy":"Never","volumes":[{"hostPath":{"path":"/var/lib/cni"},"name":"var-lib-cni"},{"hostPath":{"path":"/var/lib/etcd"},"name":"var-lib-etcd"},{"hostPath":{"path":"/var/lib/kubelet"},"name":"var-lib-kubelet"},{"hostPath":{"path":"/var/lib/kube-scheduler"},"name":"var-lib-kube-scheduler"},{"hostPath":{"path":"/var/lib/kube-controller-manager"},"name":"var-lib-kube-controller-manager"},{"hostPath":{"path":"/etc/systemd"},"name":"etc-systemd"},{"hostPath":{"path":"/lib/systemd"},"name":"lib-systemd"},{"hostPath":{"path":"/srv/kubernetes"},"name":"srv-kubernetes"},{"hostPath":{"path":"/etc/kubernetes"},"name":"etc-kubernetes"},{"hostPath":{"path":"/usr/bin"},"name":"usr-bin"},{"hostPath":{"path":"/etc/cni/net.d/"},"name":"etc-cni-netd"},{"hostPath":{"path":"/opt/cni/bin/"},"name":"opt-cni-bin"}]}}}}\n''},
+  ''creationTimestamp'': ''2025-05-05T11:17:03Z'', ''generation'': 1, ''labels'':
+  {''app'': ''kube-bench'', ''batch.kubernetes.io/controller-uid'': ''36e57bce-f77c-4095-a106-802b739c8cb4'',
+  ''batch.kubernetes.io/job-name'': ''kube-bench'', ''controller-uid'': ''36e57bce-f77c-4095-a106-802b739c8cb4'',
+  ''job-name'': ''kube-bench''}, ''name'': ''kube-bench'', ''namespace'': ''dev-cc'',
+  ''resourceVersion'': ''405725781'', ''uid'': ''36e57bce-f77c-4095-a106-802b739c8cb4''}'
+name: dev-cc/kube-bench
+spec:
+  backoffLimit: 6
+  completionMode: NonIndexed
+  completions: 1
+  manualSelector: false
+  parallelism: 1
+  podReplacementPolicy: TerminatingOrFailed
+  selector:
+    matchLabels:
+      batch.kubernetes.io/controller-uid: 36e57bce-f77c-4095-a106-802b739c8cb4
+  suspend: false
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kube-bench
+        batch.kubernetes.io/controller-uid: 36e57bce-f77c-4095-a106-802b739c8cb4
+        batch.kubernetes.io/job-name: kube-bench
+        controller-uid: 36e57bce-f77c-4095-a106-802b739c8cb4
+        job-name: kube-bench
+    spec:
+      containers:
+      - command:
+        - kube-bench
+        image: docker.io/aquasec/kube-bench:v0.8.0
+        imagePullPolicy: IfNotPresent
+        name: kube-bench
+        resources: null
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/lib/cni
+          name: var-lib-cni
+          readOnly: true
+        - mountPath: /var/lib/etcd
+          name: var-lib-etcd
+          readOnly: true
+        - mountPath: /var/lib/kubelet
+          name: var-lib-kubelet
+          readOnly: true
+        - mountPath: /var/lib/kube-scheduler
+          name: var-lib-kube-scheduler
+          readOnly: true
+        - mountPath: /var/lib/kube-controller-manager
+          name: var-lib-kube-controller-manager
+          readOnly: true
+        - mountPath: /etc/systemd
+          name: etc-systemd
+          readOnly: true
+        - mountPath: /lib/systemd/
+          name: lib-systemd
+          readOnly: true
+        - mountPath: /srv/kubernetes/
+          name: srv-kubernetes
+          readOnly: true
+        - mountPath: /etc/kubernetes
+          name: etc-kubernetes
+          readOnly: true
+        - mountPath: /usr/local/mount-from-host/bin
+          name: usr-bin
+          readOnly: true
+        - mountPath: /etc/cni/net.d/
+          name: etc-cni-netd
+          readOnly: true
+        - mountPath: /opt/cni/bin/
+          name: opt-cni-bin
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      hostIPC: false
+      hostPID: false
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /var/lib/cni
+          type: ""
+        name: var-lib-cni
+      - hostPath:
+          path: /var/lib/etcd
+          type: ""
+        name: var-lib-etcd
+      - hostPath:
+          path: /var/lib/kubelet
+          type: ""
+        name: var-lib-kubelet
+      - hostPath:
+          path: /var/lib/kube-scheduler
+          type: ""
+        name: var-lib-kube-scheduler
+      - hostPath:
+          path: /var/lib/kube-controller-manager
+          type: ""
+        name: var-lib-kube-controller-manager
+      - hostPath:
+          path: /etc/systemd
+          type: ""
+        name: etc-systemd
+      - hostPath:
+          path: /lib/systemd
+          type: ""
+        name: lib-systemd
+      - hostPath:
+          path: /srv/kubernetes
+          type: ""
+        name: srv-kubernetes
+      - hostPath:
+          path: /etc/kubernetes
+          type: ""
+        name: etc-kubernetes
+      - hostPath:
+          path: /usr/bin
+          type: ""
+        name: usr-bin
+      - hostPath:
+          path: /etc/cni/net.d/
+          type: ""
+        name: etc-cni-netd
+      - hostPath:
+          path: /opt/cni/bin/
+          type: ""
+        name: opt-cni-bin
+status:
+  completionTime: "2025-05-05T11:17:12Z"
+  conditions:
+  - lastProbeTime: "2025-05-05T11:17:12Z"
+    lastTransitionTime: "2025-05-05T11:17:12Z"
+    status: true
+    type: Complete
+  ready: 0
+  startTime: "2025-05-05T11:17:03Z"
+  succeeded: 1
+  terminating: 0
+  uncountedTerminatedPods: null

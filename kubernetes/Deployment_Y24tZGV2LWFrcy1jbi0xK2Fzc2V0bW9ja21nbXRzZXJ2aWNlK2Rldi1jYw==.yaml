@@ -1,0 +1,62 @@
+apiversion: apps/v1
+kind: Deployment
+metadata: '{''annotations'': {''deployment.kubernetes.io/revision'': ''4'', ''kubectl.kubernetes.io/last-applied-configuration'':
+  ''{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":null,"labels":{"app.kubernetes.io/instance":"dev-cc-cluster"},"name":"assetmockmgmtservice","namespace":"dev-cc"},"spec":{"selector":{"matchLabels":{"app":"assetmockmgmtservice"}},"template":{"metadata":{"labels":{"app":"assetmockmgmtservice"}},"spec":{"containers":[{"env":[{"name":"COW_ETCD_SERVICE_HOST_NAME","value":"assetmocketcd"},{"name":"COW_ETCD_SERVICE_PORT_NUMBER","value":"2379"}],"envFrom":[{"configMapRef":{"name":"cow-env"}},{"secretRef":{"name":"ccow-secret"}}],"image":"continube.azurecr.io/compliancecow/dev/mockmgmtservice:R257.2-M","imagePullPolicy":"Always","name":"assetmockmgmtservice","ports":[{"containerPort":8080}],"resources":null}],"restartPolicy":"Always"}}}}\n''},
+  ''creationTimestamp'': ''2026-04-30T11:11:15Z'', ''generation'': 4, ''labels'':
+  {''app.kubernetes.io/instance'': ''dev-cc-cluster''}, ''name'': ''assetmockmgmtservice'',
+  ''namespace'': ''dev-cc'', ''resourceVersion'': ''601998770'', ''uid'': ''72891a0b-9f93-46af-aedc-734dfa4497cc''}'
+name: dev-cc/assetmockmgmtservice
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: assetmockmgmtservice
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: assetmockmgmtservice
+    spec:
+      containers:
+      - env:
+        - name: COW_ETCD_SERVICE_HOST_NAME
+          value: assetmocketcd
+        - name: COW_ETCD_SERVICE_PORT_NUMBER
+          value: 2379
+        envFrom:
+        - configMapRef:
+            name: cow-env
+        - secretRef:
+            name: ccow-secret
+        image: continube.azurecr.io/compliancecow/dev/mockmgmtservice:R257.2-M
+        imagePullPolicy: Always
+        name: assetmockmgmtservice
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: null
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+status: '{''availableReplicas'': 1, ''conditions'': [{''lastTransitionTime'': ''2026-04-30T11:11:16Z'',
+  ''lastUpdateTime'': ''2026-05-04T09:32:56Z'', ''message'': ''ReplicaSet "assetmockmgmtservice-58455b6c45"
+  has successfully progressed.'', ''reason'': ''NewReplicaSetAvailable'', ''status'':
+  ''true'', ''type'': ''Progressing''}, {''lastTransitionTime'': ''2026-05-19T16:13:15Z'',
+  ''lastUpdateTime'': ''2026-05-19T16:13:15Z'', ''message'': ''Deployment has minimum
+  availability.'', ''reason'': ''MinimumReplicasAvailable'', ''status'': ''true'',
+  ''type'': ''Available''}], ''observedGeneration'': 4, ''readyReplicas'': 1, ''replicas'':
+  1, ''updatedReplicas'': 1}'

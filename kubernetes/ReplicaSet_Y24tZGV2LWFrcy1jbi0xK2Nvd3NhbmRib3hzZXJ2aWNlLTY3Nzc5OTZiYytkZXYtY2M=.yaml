@@ -1,0 +1,73 @@
+apiversion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    deployment.kubernetes.io/desired-replicas: 1
+    deployment.kubernetes.io/max-replicas: 2
+    deployment.kubernetes.io/revision: 2
+  creationTimestamp: "2026-04-04T08:46:20Z"
+  generation: 2
+  labels:
+    app: cowsandboxservice
+    pod-template-hash: 6777996bc
+  name: cowsandboxservice-6777996bc
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Deployment
+    name: cowsandboxservice
+    uid: f65d90b0-b0d8-4bf2-856a-c06dd3125cb5
+  resourceVersion: 578690334
+  uid: 19891a42-e17d-470c-b160-27626ebc3c46
+name: dev-cc/cowsandboxservice-6777996bc
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: cowsandboxservice
+      pod-template-hash: 6777996bc
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cowsandboxservice
+        pod-template-hash: 6777996bc
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: cow-env
+        image: continube.azurecr.io/compliancecow/dev/cowsandboxservice:R258-01M
+        imagePullPolicy: Always
+        name: cowsandboxservice
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 250Mi
+        securityContext:
+          capabilities:
+            add: []
+            drop:
+            - ALL
+          seccompProfile:
+            type: Unconfined
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10000
+      terminationGracePeriodSeconds: 30
+status:
+  observedGeneration: 2
+  replicas: 0

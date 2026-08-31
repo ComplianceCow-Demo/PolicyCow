@@ -1,0 +1,31 @@
+
+groups:
+  - oktaGroup: sec-teleport-prod-seceng
+    libraryRoles:
+      assigned:
+        - cw-cluster-read
+        - deviceslot-read
+        - rack-read
+        - teleport-admin
+      approver:
+        - teleport-admin
+        - phy-sec-genetec-super-admin
+      extraRequestable:
+        - infiniband-ssh-prod
+        - network-ssh-prod
+        - nodes-ssh-prod
+    legacyRoles: []
+
+  - oktaGroup: sec-teleport-nonprod-seceng
+    libraryRoles:
+      assigned:
+        - cw-cluster-read
+        - siem-viewer
+        - teleport-human-operator
+      approver:
+        - teleport-admin
+      extraRequestable:
+        - infiniband-ssh-non-prod
+        - network-ssh-non-prod
+        - nodes-ssh-non-prod
+    legacyRoles: []

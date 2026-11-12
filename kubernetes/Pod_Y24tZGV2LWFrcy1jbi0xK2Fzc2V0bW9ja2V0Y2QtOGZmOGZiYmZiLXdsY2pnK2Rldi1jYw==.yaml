@@ -1,0 +1,233 @@
+apiversion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2026-09-02T08:42:49Z"
+  generateName: assetmocketcd-8ff8fbbfb-
+  generation: 1
+  labels:
+    app: assetmocketcd
+    pod-template-hash: 8ff8fbbfb
+  name: assetmocketcd-8ff8fbbfb-wlcjg
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: assetmocketcd-8ff8fbbfb
+    uid: 00932e7c-9b68-40e7-a60d-4de188150c2a
+  resourceVersion: 657638216
+  uid: 8e1c0eb8-2162-4f10-8f28-59fc7f9e8851
+name: dev-cc/Pod/assetmocketcd-8ff8fbbfb-wlcjg
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - |
+      /opt/bitnami/scripts/etcd/run.sh &
+      ETCD_PID=$!
+
+      RETRIES=0
+      until \
+        ETCDCTL_API=3 etcdctl \
+          --endpoints=http://127.0.0.1:2379 \
+          endpoint health >/dev/null 2>&1 || \
+        ETCDCTL_API=3 etcdctl \
+          --endpoints=http://127.0.0.1:2379 \
+          --user=root:${ETCD_ROOT_PASSWORD} \
+          endpoint health >/dev/null 2>&1
+      do
+        echo "Waiting for etcd... attempt $RETRIES"
+        RETRIES=$((RETRIES+1))
+
+        if [ $RETRIES -eq 30 ]; then
+          echo "etcd did not become ready in time"
+          exit 1
+        fi
+
+        sleep 2
+      done
+
+      echo "etcd is ready, ensuring auth..."
+
+      etcdctl --endpoints=http://127.0.0.1:2379 \
+        user add root:${ETCD_ROOT_PASSWORD} 2>/dev/null || true
+
+      etcdctl --endpoints=http://127.0.0.1:2379 \
+        user grant-role root root 2>/dev/null || true
+
+      etcdctl --endpoints=http://127.0.0.1:2379 \
+        --user=root:${ETCD_ROOT_PASSWORD} auth enable 2>/dev/null || true
+
+      etcdctl --endpoints=http://127.0.0.1:2379 \
+        --user=root:${ETCD_ROOT_PASSWORD} \
+        role add cowetcd-role 2>/dev/null || true
+
+      etcdctl --endpoints=http://127.0.0.1:2379 \
+        --user=root:${ETCD_ROOT_PASSWORD} \
+        role grant-permission cowetcd-role readwrite "" --prefix=true 2>/dev/null || true
+
+      etcdctl --endpoints=http://127.0.0.1:2379 \
+        --user=root:${ETCD_ROOT_PASSWORD} \
+        user add appuser:${ETCD_APP_PASSWORD} 2>/dev/null || true
+
+      etcdctl --endpoints=http://127.0.0.1:2379 \
+        --user=root:${ETCD_ROOT_PASSWORD} \
+        user grant-role appuser cowetcd-role 2>/dev/null || true
+
+      echo "Auth setup complete. etcd is secured."
+
+      wait $ETCD_PID
+    env:
+    - name: ALLOW_NONE_AUTHENTICATION
+      value: "no"
+    - name: ETCD_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: etcd-root-password
+          name: ccow-secret
+    - name: ETCD_APP_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: etcd-app-password
+          name: ccow-secret
+    - name: ETCD_ADVERTISE_CLIENT_URLS
+      value: http://assetmocketcd:2379
+    - name: ETCD_MAX_REQUEST_BYTES
+      value: 26214400
+    - name: ETCD_AUTO_COMPACTION_RETENTION
+      value: 30m
+    - name: ETCD_QUOTA_BACKEND_BYTES
+      value: 82747843840
+    - name: ETCD_ENABLE_PPROF
+      value: true
+    - name: ETCD_SNAPSHOT_COUNT
+      value: 10000
+    - name: ETCD_MAX_SNAPSHOTS
+      value: 2
+    - name: ETCD_MAX_WALS
+      value: 5
+    - name: GOGC
+      value: 50
+    - name: GOMAXPROCS
+      value: 1
+    - name: ETCD_DEBUG
+      value: true
+    - name: ETCD_AUTO_COMPACTION_MODE
+      value: periodic
+    image: bitnamilegacy/etcd:3.5.13
+    imagePullPolicy: IfNotPresent
+    name: assetmocketcd
+    resources: null
+    securityContext:
+      readOnlyRootFilesystem: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /bitnami/etcd/data
+      name: etcd-data
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lvhw6
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001a
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    fsGroup: 3000
+    runAsUser: 1000
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: etcd-data
+    persistentVolumeClaim:
+      claimName: assetmocketcd-claim
+  - name: kube-api-access-lvhw6
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-02T08:42:51Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-02T08:42:49Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-10T05:17:01Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-02T08:42:51Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-02T08:42:49Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://f8cda89b2eb0466f8bab66d804173ecfa61dbf5576483dc2851dd307682ebd4f
+    image: docker.io/bitnamilegacy/etcd:3.5.13
+    imageID: docker.io/bitnamilegacy/etcd@sha256:7f4d5b709f4734267d1d998b5bc85d29d9691d200b6946c5a4b66ff228d7e578
+    lastState: null
+    name: assetmocketcd
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-09-02T08:42:50Z"
+    volumeMounts:
+    - mountPath: /bitnami/etcd/data
+      name: etcd-data
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lvhw6
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.241
+  hostIPs:
+  - ip: 10.4.16.241
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.26
+  podIPs:
+  - ip: 10.4.16.26
+  qosClass: BestEffort
+  startTime: "2026-09-02T08:42:49Z"

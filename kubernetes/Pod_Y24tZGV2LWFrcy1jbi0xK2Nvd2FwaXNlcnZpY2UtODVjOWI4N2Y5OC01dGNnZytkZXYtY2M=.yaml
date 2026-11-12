@@ -1,0 +1,159 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-28T08:58:07Z"
+  generateName: cowapiservice-85c9b87f98-
+  generation: 1
+  labels:
+    app: cowapiservice
+    pod-template-hash: 85c9b87f98
+  name: cowapiservice-85c9b87f98-5tcgg
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowapiservice-85c9b87f98
+    uid: 25da01f0-73ef-42e6-ac8c-1ed7edb2ce7b
+  resourceVersion: 636123380
+  uid: d7b16cf8-7321-442f-9309-d79c00b88a1e
+name: dev-cc/cowapiservice-85c9b87f98-5tcgg
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - env:
+    - name: LOG_LEVELS
+      value: debug,info,warning,error
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowapiservice:R258.2160-A
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 30
+      periodSeconds: 100
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: cowapiservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /continube/cowapiservice/config.json
+      name: cowapiservice-config
+      subPath: config.json
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-jptpf
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000019
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10000
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - configMap:
+      defaultMode: 420
+      name: cowapiservice-config.json
+    name: cowapiservice-config
+  - name: kube-api-access-jptpf
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:08Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:07Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:08Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:08Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:07Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://a6a658d04a91ef9fc8d5cbc044f02c9f6feafa3505d00f891cf9c0d2824fabe8
+    image: continube.azurecr.io/compliancecow/dev/cowapiservice:R258.2160-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowapiservice@sha256:126d58221fee723f90b9443dbbf09bf843e76ede99a4c3252287a653c31e58d5
+    lastState: null
+    name: cowapiservice
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-28T08:58:08Z"
+    volumeMounts:
+    - mountPath: /continube/cowapiservice/config.json
+      name: cowapiservice-config
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-jptpf
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.193
+  hostIPs:
+  - ip: 10.4.16.193
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.237
+  podIPs:
+  - ip: 10.4.16.237
+  qosClass: BestEffort
+  startTime: "2026-07-28T08:58:07Z"

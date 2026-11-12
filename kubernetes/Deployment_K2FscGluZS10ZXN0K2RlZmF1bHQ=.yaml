@@ -1,0 +1,174 @@
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: 4
+    kubectl.kubernetes.io/last-applied-configuration:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        annotations: null
+        name: alpine-test
+        namespace: default
+      spec:
+        replicas: 2
+        selector:
+          matchLabels:
+            app: alpine-test
+        template:
+          metadata:
+            labels:
+              app: alpine-test
+          spec:
+            containers:
+            - command:
+              - sh
+              - -c
+              - while true; do sleep 60; done
+              image: alpine:latest
+              name: alpine
+            hostIPC: true
+            hostPID: true
+  creationTimestamp: "2026-08-11T10:50:10Z"
+  generation: 4
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: null
+          f:kubectl.kubernetes.io/last-applied-configuration: null
+      f:spec:
+        f:progressDeadlineSeconds: null
+        f:replicas: null
+        f:revisionHistoryLimit: null
+        f:selector: null
+        f:strategy:
+          f:rollingUpdate:
+            .: null
+            f:maxSurge: null
+            f:maxUnavailable: null
+          f:type: null
+        f:template:
+          f:metadata:
+            f:labels:
+              .: null
+              f:app: null
+          f:spec:
+            f:containers:
+              k:{"name":"alpine"}:
+                .: null
+                f:command: null
+                f:image: null
+                f:imagePullPolicy: null
+                f:name: null
+                f:resources: null
+                f:terminationMessagePath: null
+                f:terminationMessagePolicy: null
+            f:dnsPolicy: null
+            f:hostIPC: null
+            f:hostPID: null
+            f:restartPolicy: null
+            f:schedulerName: null
+            f:securityContext: null
+            f:terminationGracePeriodSeconds: null
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2026-08-12T15:22:06Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: null
+      f:status:
+        f:availableReplicas: null
+        f:conditions:
+          .: null
+          k:{"type":"Available"}:
+            .: null
+            f:lastTransitionTime: null
+            f:lastUpdateTime: null
+            f:message: null
+            f:reason: null
+            f:status: null
+            f:type: null
+          k:{"type":"Progressing"}:
+            .: null
+            f:lastTransitionTime: null
+            f:lastUpdateTime: null
+            f:message: null
+            f:reason: null
+            f:status: null
+            f:type: null
+        f:observedGeneration: null
+        f:readyReplicas: null
+        f:replicas: null
+        f:terminatingReplicas: null
+        f:updatedReplicas: null
+    manager: kube-controller-manager
+    operation: Update
+    subresource: status
+    time: "2026-08-12T15:22:38Z"
+  name: alpine-test
+  namespace: default
+  resourceVersion: 28065073
+  uid: d3389247-7118-47ec-b0df-7a88ac9abafd
+name: default/Deployment/alpine-test
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: alpine-test
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: alpine-test
+    spec:
+      containers:
+      - command:
+        - sh
+        - -c
+        - while true; do sleep 60; done
+        image: alpine:latest
+        imagePullPolicy: Always
+        name: alpine
+        resources:
+          limits:
+            memory: 512Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      hostIPC: true
+      hostPID: true
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2026-08-11T10:50:12Z"
+    lastUpdateTime: "2026-08-11T10:50:12Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: true
+    type: Available
+  - lastTransitionTime: "2026-08-11T10:50:10Z"
+    lastUpdateTime: "2026-08-12T15:22:08Z"
+    message: ReplicaSet "alpine-test-5c485c6d4b" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: true
+    type: Progressing
+  observedGeneration: 4
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2

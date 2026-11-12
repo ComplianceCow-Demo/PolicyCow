@@ -1,0 +1,192 @@
+apiversion: v1
+automountserviceaccounttoken: null
+datafilek8sautomountserviceaccounttoken_id: c948ca925ccf403aa58abeb624ef93df
+kind: Pod
+metadata:
+  creationTimestamp: "2026-06-21T14:14:11Z"
+  generateName: argocd-notifications-controller-847d8f96f5-
+  generation: 1
+  labels:
+    app.kubernetes.io/name: argocd-notifications-controller
+    pod-template-hash: 847d8f96f5
+  name: argocd-notifications-controller-847d8f96f5-2zqqj
+  namespace: argocd
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: argocd-notifications-controller-847d8f96f5
+    uid: 0bdf5984-1f09-476a-8c58-166e17b26eef
+  resourceVersion: 617993652
+  uid: faa18a86-e9ad-4643-947e-e87fe87c121e
+name: argocd/argocd-notifications-controller-847d8f96f5-2zqqj
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - args:
+    - /usr/local/bin/argocd-notifications
+    env:
+    - name: ARGOCD_NOTIFICATIONS_CONTROLLER_LOGFORMAT
+      valueFrom:
+        configMapKeyRef:
+          key: notificationscontroller.log.format
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_NOTIFICATIONS_CONTROLLER_LOGLEVEL
+      valueFrom:
+        configMapKeyRef:
+          key: notificationscontroller.log.level
+          name: argocd-cmd-params-cm
+          optional: true
+    - name: ARGOCD_APPLICATION_NAMESPACES
+      valueFrom:
+        configMapKeyRef:
+          key: application.namespaces
+          name: argocd-cmd-params-cm
+          optional: true
+    image: quay.io/argoproj/argocd:v2.9.2
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      periodSeconds: 10
+      successThreshold: 1
+      tcpSocket:
+        port: 9001
+      timeoutSeconds: 1
+    name: argocd-notifications-controller
+    resources: null
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /app/config/tls
+      name: tls-certs
+    - mountPath: /app/config/reposerver/tls
+      name: argocd-repo-server-tls
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vkpnt
+      readOnly: true
+    workingDir: /app
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000019
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  serviceAccount: argocd-notifications-controller
+  serviceAccountName: argocd-notifications-controller
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - configMap:
+      defaultMode: 420
+      name: argocd-tls-certs-cm
+    name: tls-certs
+  - name: argocd-repo-server-tls
+    secret:
+      defaultMode: 420
+      items:
+      - key: tls.crt
+        path: tls.crt
+      - key: tls.key
+        path: tls.key
+      - key: ca.crt
+        path: ca.crt
+      optional: true
+      secretName: argocd-repo-server-tls
+  - name: kube-api-access-vkpnt
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:36Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:11Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:36Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:36Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:11Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://615f2f6fce15d4f920bba0c6ac8c17386efa3300329c9c6b2cf059c5a9b40990
+    image: quay.io/argoproj/argocd:v2.9.2
+    imageID: quay.io/argoproj/argocd@sha256:8576d347f30fa4c56a0129d1c0a0f5ed1e75662f0499f1ed7e917c405fd909dc
+    lastState: null
+    name: argocd-notifications-controller
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-06-21T14:14:35Z"
+    volumeMounts:
+    - mountPath: /app/config/tls
+      name: tls-certs
+    - mountPath: /app/config/reposerver/tls
+      name: argocd-repo-server-tls
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vkpnt
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.193
+  hostIPs:
+  - ip: 10.4.16.193
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.226
+  podIPs:
+  - ip: 10.4.16.226
+  qosClass: BestEffort
+  startTime: "2026-06-21T14:14:11Z"

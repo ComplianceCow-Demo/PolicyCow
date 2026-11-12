@@ -1,0 +1,163 @@
+apiversion: v1
+automountserviceaccounttoken: null
+datafilek8sautomountserviceaccounttoken_id: 2c3af434f76342ca8d315be78b209a3a
+kind: Pod
+metadata:
+  creationTimestamp: "2026-06-21T14:14:14Z"
+  generateName: argocd-redis-7d8d46cc7f-
+  generation: 1
+  labels:
+    app.kubernetes.io/name: argocd-redis
+    pod-template-hash: 7d8d46cc7f
+  name: argocd-redis-7d8d46cc7f-nqq8p
+  namespace: argocd
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: argocd-redis-7d8d46cc7f
+    uid: 9e3b152c-4681-4d37-8e6f-bd688a67ec2f
+  resourceVersion: 617993497
+  uid: 211e1a8c-10f6-4de4-a4f5-21659c287f31
+name: argocd/argocd-redis-7d8d46cc7f-nqq8p
+spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: argocd-redis
+          topologyKey: kubernetes.io/hostname
+        weight: 100
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/part-of: argocd
+          topologyKey: kubernetes.io/hostname
+        weight: 5
+  automountServiceAccountToken: false
+  containers:
+  - args:
+    - --save
+    - ""
+    - --appendonly
+    - "no"
+    image: redis:7.0.11-alpine
+    imagePullPolicy: Always
+    name: redis
+    ports:
+    - containerPort: 6379
+      protocol: TCP
+    resources: null
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-97cvn
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000019
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 999
+    seccompProfile:
+      type: RuntimeDefault
+  serviceAccount: argocd-redis
+  serviceAccountName: argocd-redis
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-97cvn
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:24Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:14Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:24Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:24Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:14:14Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://e2be129e113f55056cc5cf74693fab7c9bca8d083ec2759e57044361bae82cbb
+    image: docker.io/library/redis:7.0.11-alpine
+    imageID: docker.io/library/redis@sha256:121bac949fb5f623b9fa0b4e4c9fb358ffd045966e754cfa3eb9963f3af2fe3b
+    lastState: null
+    name: redis
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-06-21T14:14:24Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-97cvn
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.193
+  hostIPs:
+  - ip: 10.4.16.193
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.218
+  podIPs:
+  - ip: 10.4.16.218
+  qosClass: BestEffort
+  startTime: "2026-06-21T14:14:14Z"

@@ -1,0 +1,171 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata: '{''annotations'': {''kubectl.kubernetes.io/last-applied-configuration'':
+  ''{"apiVersion":"v1","kind":"Pod","metadata":{"annotations":null,"labels":{"app.kubernetes.io/instance":"dev-cc-cluster","name":"cowcontrolservicebatch"},"name":"cowcontrolservicebatch","namespace":"dev-cc"},"spec":{"containers":[{"env":[{"name":"RECOVER_LONG_RUNNING_CN_PLAN_EXECUTION","value":"true"},{"name":"STOP_HTTP_LISTENER","value":"true"}],"envFrom":[{"configMapRef":{"name":"cow-env"}}],"image":"continube.azurecr.io/compliancecow/dev/cowcontrolservice:R258.2160-A","imagePullPolicy":"Always","name":"cowcontrolservicebatch"}],"initContainers":[{"command":["sh","-c","sleep
+  300"],"image":"busybox","name":"delay-init"}],"restartPolicy":"Always","securityContext":{"runAsNonRoot":true,"runAsUser":10000}}}\n''},
+  ''creationTimestamp'': ''2026-07-27T04:38:28Z'', ''generation'': 4, ''labels'':
+  {''app.kubernetes.io/instance'': ''dev-cc-cluster'', ''name'': ''cowcontrolservicebatch''},
+  ''name'': ''cowcontrolservicebatch'', ''namespace'': ''dev-cc'', ''resourceVersion'':
+  ''636122463'', ''uid'': ''f2111487-5887-4680-9f58-5d2d1486f905''}'
+name: dev-cc/cowcontrolservicebatch
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - env:
+    - name: RECOVER_LONG_RUNNING_CN_PLAN_EXECUTION
+      value: true
+    - name: STOP_HTTP_LISTENER
+      value: true
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowcontrolservice:R258.2160-A
+    imagePullPolicy: Always
+    name: cowcontrolservicebatch
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-z55hs
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  initContainers:
+  - command:
+    - sh
+    - -c
+    - sleep 300
+    image: busybox
+    imagePullPolicy: Always
+    name: delay-init
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-z55hs
+      readOnly: true
+  nodeName: aks-nodepool1-29681506-vmss000019
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10000
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-z55hs
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:38:31Z"
+    observedGeneration: 4
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:43:30Z"
+    observedGeneration: 4
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:43:31Z"
+    observedGeneration: 4
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:43:31Z"
+    observedGeneration: 4
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:38:28Z"
+    observedGeneration: 4
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://d0c84918a77bdfb60cb230ff20aab4718e8d724d0781348153ab5095e383f46a
+    image: continube.azurecr.io/compliancecow/dev/cowcontrolservice:R258.2160-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowcontrolservice@sha256:d053b768f5c1e07201fe5676d784e1c392ddd33cbf97af3b49cb15e869f3f505
+    lastState:
+      terminated:
+        containerID: containerd://e86b74e7377395b20b7e625cf324ee8a7d4f740bc44601789686b2eb297acf65
+        exitCode: 2
+        finishedAt: "2026-07-28T08:57:56Z"
+        reason: Error
+        startedAt: "2026-07-28T01:41:54Z"
+    name: cowcontrolservicebatch
+    ready: true
+    resources: null
+    restartCount: 3
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-28T08:57:57Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-z55hs
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.193
+  hostIPs:
+  - ip: 10.4.16.193
+  initContainerStatuses:
+  - containerID: containerd://f92d6b815cb3f1226099f29497882798caba551dd2d0c1426c980cc7423ada04
+    image: docker.io/library/busybox:latest
+    imageID: docker.io/library/busybox@sha256:fd8d9aa63ba2f0982b5304e1ee8d3b90a210bc1ffb5314d980eb6962f1a9715d
+    lastState: null
+    name: delay-init
+    ready: true
+    resources: null
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://f92d6b815cb3f1226099f29497882798caba551dd2d0c1426c980cc7423ada04
+        exitCode: 0
+        finishedAt: "2026-07-27T04:43:30Z"
+        reason: Completed
+        startedAt: "2026-07-27T04:38:30Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-z55hs
+      readOnly: true
+      recursiveReadOnly: Disabled
+  observedGeneration: 4
+  phase: Running
+  podIP: 10.4.16.201
+  podIPs:
+  - ip: 10.4.16.201
+  qosClass: BestEffort
+  startTime: "2026-07-27T04:38:28Z"

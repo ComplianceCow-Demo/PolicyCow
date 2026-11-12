@@ -1,0 +1,171 @@
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: 1
+    kubectl.kubernetes.io/last-applied-configuration:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        annotations: null
+        name: memcached-test
+        namespace: default
+      spec:
+        replicas: 2
+        selector:
+          matchLabels:
+            app: memcached-test
+        template:
+          metadata:
+            labels:
+              app: memcached-test
+          spec:
+            containers:
+            - image: memcached:latest
+              name: memcached
+              ports:
+              - containerPort: 11211
+  creationTimestamp: "2026-08-11T10:50:14Z"
+  generation: 1
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: null
+          f:kubectl.kubernetes.io/last-applied-configuration: null
+      f:spec:
+        f:progressDeadlineSeconds: null
+        f:replicas: null
+        f:revisionHistoryLimit: null
+        f:selector: null
+        f:strategy:
+          f:rollingUpdate:
+            .: null
+            f:maxSurge: null
+            f:maxUnavailable: null
+          f:type: null
+        f:template:
+          f:metadata:
+            f:labels:
+              .: null
+              f:app: null
+          f:spec:
+            f:containers:
+              k:{"name":"memcached"}:
+                .: null
+                f:image: null
+                f:imagePullPolicy: null
+                f:name: null
+                f:ports:
+                  .: null
+                  k:{"containerPort":11211,"protocol":"TCP"}:
+                    .: null
+                    f:containerPort: null
+                    f:protocol: null
+                f:resources: null
+                f:terminationMessagePath: null
+                f:terminationMessagePolicy: null
+            f:dnsPolicy: null
+            f:restartPolicy: null
+            f:schedulerName: null
+            f:securityContext: null
+            f:terminationGracePeriodSeconds: null
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2026-08-11T10:50:14Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: null
+      f:status:
+        f:availableReplicas: null
+        f:conditions:
+          .: null
+          k:{"type":"Available"}:
+            .: null
+            f:lastTransitionTime: null
+            f:lastUpdateTime: null
+            f:message: null
+            f:reason: null
+            f:status: null
+            f:type: null
+          k:{"type":"Progressing"}:
+            .: null
+            f:lastTransitionTime: null
+            f:lastUpdateTime: null
+            f:message: null
+            f:reason: null
+            f:status: null
+            f:type: null
+        f:observedGeneration: null
+        f:readyReplicas: null
+        f:replicas: null
+        f:terminatingReplicas: null
+        f:updatedReplicas: null
+    manager: kube-controller-manager
+    operation: Update
+    subresource: status
+    time: "2026-08-11T10:50:15Z"
+  name: memcached-test
+  namespace: default
+  resourceVersion: 27456822
+  uid: c1122230-9b94-44a8-82b6-ad77405ff78f
+name: default/Deployment/memcached-test
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: memcached-test
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: memcached-test
+    spec:
+      containers:
+      - image: memcached:latest
+        imagePullPolicy: Always
+        name: memcached
+        ports:
+        - containerPort: 11211
+          protocol: TCP
+        resources: null
+        securityContext:
+          seccompProfile:
+            type: RuntimeDefault
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: null
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2026-08-11T10:50:15Z"
+    lastUpdateTime: "2026-08-11T10:50:15Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: true
+    type: Available
+  - lastTransitionTime: "2026-08-11T10:50:14Z"
+    lastUpdateTime: "2026-08-11T10:50:15Z"
+    message: ReplicaSet "memcached-test-96f964b78" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: true
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2

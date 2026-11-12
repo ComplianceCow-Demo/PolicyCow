@@ -1,0 +1,165 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-28T08:58:00Z"
+  generateName: cowapicallbackservice-85b7dc44dc-
+  generation: 1
+  labels:
+    app: cowapicallbackservice
+    pod-template-hash: 85b7dc44dc
+  name: cowapicallbackservice-85b7dc44dc-z97cq
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowapicallbackservice-85b7dc44dc
+    uid: 029ce019-4401-4550-9458-cbc303e94027
+  resourceVersion: 636123493
+  uid: fbc61555-4ac1-4db6-92b8-3e4580ac2f5b
+name: dev-cc/cowapicallbackservice-85b7dc44dc-z97cq
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowapicallbackservice:R258.2160-A
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 30
+      periodSeconds: 100
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: cowapicallbackservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 300m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 250Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-8h4pg
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000019
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10000
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - name: kube-api-access-8h4pg
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:10Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:08Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:10Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:10Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:08Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - allocatedResources:
+      cpu: 100m
+      memory: 250Mi
+    containerID: containerd://fd7d7abbe3ebbeceb5d3b9a8ad41af6bac905a7f7a634d7de12c7660a9854be9
+    image: continube.azurecr.io/compliancecow/dev/cowapicallbackservice:R258.2160-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowapicallbackservice@sha256:b0e1f241fb654cf6d9e77c27b1fb36d25de2e333d706c7c14a26805392e3fc17
+    lastState: null
+    name: cowapicallbackservice
+    ready: true
+    resources:
+      limits:
+        cpu: 300m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 250Mi
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-28T08:58:09Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-8h4pg
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.193
+  hostIPs:
+  - ip: 10.4.16.193
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.219
+  podIPs:
+  - ip: 10.4.16.219
+  qosClass: Burstable
+  startTime: "2026-07-28T08:58:08Z"

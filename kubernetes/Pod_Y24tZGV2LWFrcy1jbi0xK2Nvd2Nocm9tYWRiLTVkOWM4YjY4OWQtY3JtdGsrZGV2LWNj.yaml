@@ -1,0 +1,147 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-28T08:45:20Z"
+  generateName: cowchromadb-5d9c8b689d-
+  generation: 1
+  labels:
+    app: cowchromadb
+    pod-template-hash: 5d9c8b689d
+  name: cowchromadb-5d9c8b689d-crmtk
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowchromadb-5d9c8b689d
+    uid: 407c33e4-ff2e-424a-be6e-0c06e7413b95
+  resourceVersion: 636118057
+  uid: 85cf91c7-04d1-462b-ac68-1399371d4da5
+name: dev-cc/cowchromadb-5d9c8b689d-crmtk
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - env:
+    - name: IS_PERSISTENT
+      value: "TRUE"
+    - name: CHROMA_SEGMENT_CACHE_POLICY
+      value: LRU
+    - name: CHROMA_MEMORY_LIMIT_BYTES
+      value: 5000000000
+    image: chromadb/chroma:1.0.6
+    imagePullPolicy: IfNotPresent
+    name: cowchromadb
+    ports:
+    - containerPort: 8000
+      protocol: TCP
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /data
+      name: cowchromadb-claim
+      subPath: cowchromadbdata
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-sc5f9
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001i
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: cowchromadb-claim
+    persistentVolumeClaim:
+      claimName: cowchromadb-claim
+  - name: kube-api-access-sc5f9
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:45:47Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:45:20Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:45:47Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:45:47Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:45:20Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://8c0ba5ba5477228fce6d91e5b5292ad9237351bff79aacd5fc7e60c6e7a7d371
+    image: docker.io/chromadb/chroma:1.0.6
+    imageID: docker.io/chromadb/chroma@sha256:a51351d23cebe4b79a9f7aec4d7fb4ddff967c37a28fb25dc9de3939b31f48e5
+    lastState: null
+    name: cowchromadb
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-28T08:45:47Z"
+    volumeMounts:
+    - mountPath: /data
+      name: cowchromadb-claim
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-sc5f9
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.100
+  hostIPs:
+  - ip: 10.4.16.100
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.114
+  podIPs:
+  - ip: 10.4.16.114
+  qosClass: BestEffort
+  startTime: "2026-07-28T08:45:20Z"

@@ -1,0 +1,152 @@
+apiversion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2026-10-15T00:40:43Z"
+  generateName: cowsandboxservice-d4bb4c6bb-
+  generation: 1
+  labels:
+    app: cowsandboxservice
+    pod-template-hash: d4bb4c6bb
+  name: cowsandboxservice-d4bb4c6bb-hf4pb
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowsandboxservice-d4bb4c6bb
+    uid: 33a6b5ea-266c-4538-accc-04c8ce54f266
+  resourceVersion: 674639492
+  uid: d3338248-4e43-4ada-9836-91c300461147
+name: dev-cc/Pod/cowsandboxservice-d4bb4c6bb-hf4pb
+spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowsandboxservice:R259.2355-A
+    imagePullPolicy: Always
+    name: cowsandboxservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 300m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 250Mi
+    securityContext: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-9vxxk
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001a
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - name: kube-api-access-9vxxk
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-15T00:40:47Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-15T00:40:43Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-15T00:40:47Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-15T00:40:47Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-15T00:40:43Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - allocatedResources:
+      cpu: 100m
+      memory: 250Mi
+    containerID: containerd://944c1fda1ff1989db79d256c145a183d444f357683cd3727f590a0d74012a29a
+    image: continube.azurecr.io/compliancecow/dev/cowsandboxservice:R259.2355-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowsandboxservice@sha256:62652e4fac679c237f2cd64edd86d4cce844edab04a9e25493071c11d01b4d76
+    lastState: null
+    name: cowsandboxservice
+    ready: true
+    resources:
+      limits:
+        cpu: 300m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 250Mi
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-10-15T00:40:46Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-9vxxk
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.241
+  hostIPs:
+  - ip: 10.4.16.241
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.25
+  podIPs:
+  - ip: 10.4.16.25
+  qosClass: Burstable
+  startTime: "2026-10-15T00:40:43Z"

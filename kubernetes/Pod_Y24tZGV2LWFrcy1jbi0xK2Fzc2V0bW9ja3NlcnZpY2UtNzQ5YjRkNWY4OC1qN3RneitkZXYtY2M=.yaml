@@ -1,0 +1,192 @@
+apiversion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2026-10-08T09:12:17Z"
+  generateName: assetmockservice-749b4d5f88-
+  generation: 1
+  labels:
+    app: assetmockservice
+    pod-template-hash: 749b4d5f88
+  name: assetmockservice-749b4d5f88-j7tgz
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: assetmockservice-749b4d5f88
+    uid: 5680d242-a7f1-4fea-842d-4a52b52454db
+  resourceVersion: 671394708
+  uid: 73891ee7-b0aa-4c37-a660-cd9e2ce4956a
+name: dev-cc/Pod/assetmockservice-749b4d5f88-j7tgz
+spec:
+  containers:
+  - env:
+    - name: COW_MOCK_MGMT_SERVICE_PROTOCOL
+      value: http
+    - name: COW_MOCK_MGMT_SERVICE_HOST_NAME
+      value: assetmockmgmtservice
+    - name: COW_MOCK_SERVICE_PORT_NUMBER
+      value: 8080
+    - name: MOCK_SERVICE_SCOPE
+      value: task
+    - name: COW_AGGREGATOR_SERVICE_PROTOCOL
+      value: http
+    - name: COW_AGGREGATOR_SERVICE_HOST_NAME
+      value: localhost
+    - name: COW_AGGREGATOR_SERVICE_PORT_NUMBER
+      value: 8081
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/prod/mockservice:R257
+    imagePullPolicy: Always
+    name: assetmockservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    - containerPort: 443
+      protocol: TCP
+    resources: null
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-7rwvr
+      readOnly: true
+  - env:
+    - name: COW_AGGREGATOR_SERVICE_PORT_NUMBER
+      value: 8081
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowaggregatorservice:R259.2343-A
+    imagePullPolicy: Always
+    name: cowaggregatorservice
+    ports:
+    - containerPort: 8081
+      protocol: TCP
+    resources: null
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-7rwvr
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001i
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-7rwvr
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-08T09:12:20Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-08T09:12:17Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-08T09:12:20Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-08T09:12:20Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-08T09:12:17Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://60de526bddb903481d41cc45fcad411ac6e1d446463183ce35c8099d5e207863
+    image: continube.azurecr.io/compliancecow/prod/mockservice:R257
+    imageID: continube.azurecr.io/compliancecow/prod/mockservice@sha256:b2f636db7d639a5b698b51b0485df92b9fbad86187dc65170e7251ae4c8da939
+    lastState: null
+    name: assetmockservice
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-10-08T09:12:19Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-7rwvr
+      readOnly: true
+      recursiveReadOnly: Disabled
+  - containerID: containerd://ad2153d4c4949dd04fb47d5e2df46df07c4c503df6f8530c89b6ef39c39a8450
+    image: continube.azurecr.io/compliancecow/dev/cowaggregatorservice:R259.2343-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowaggregatorservice@sha256:46eb5aae280ee6376a7b1f5674a9f18b9369d2d9bbecc3a2a0ba1a599ed8a5c7
+    lastState: null
+    name: cowaggregatorservice
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-10-08T09:12:20Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-7rwvr
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.100
+  hostIPs:
+  - ip: 10.4.16.100
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.132
+  podIPs:
+  - ip: 10.4.16.132
+  qosClass: BestEffort
+  startTime: "2026-10-08T09:12:17Z"

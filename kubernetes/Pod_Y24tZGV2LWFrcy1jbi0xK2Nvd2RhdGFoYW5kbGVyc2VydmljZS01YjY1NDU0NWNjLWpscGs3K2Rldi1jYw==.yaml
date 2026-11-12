@@ -1,0 +1,145 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-28T08:57:59Z"
+  generateName: cowdatahandlerservice-5b654545cc-
+  generation: 1
+  labels:
+    app: cowdatahandlerservice
+    pod-template-hash: 5b654545cc
+  name: cowdatahandlerservice-5b654545cc-jlpk7
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowdatahandlerservice-5b654545cc
+    uid: 6169c01e-c495-4d7d-95d3-403a963e6b33
+  resourceVersion: 636123155
+  uid: f3458bb5-5270-48a9-972b-9b177c150dc3
+name: dev-cc/cowdatahandlerservice-5b654545cc-jlpk7
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/dev/cowdatahandlerservice:R258.2160-A
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 30
+      periodSeconds: 100
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: cowdatahandlerservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-9bbl6
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001i
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-9bbl6
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:06Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:05Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:06Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:06Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-28T08:58:05Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://303ed0c5f824f40edefcc0a9d76ccbad5f21dcd48d7ea5ff93599fa87537a6bc
+    image: continube.azurecr.io/compliancecow/dev/cowdatahandlerservice:R258.2160-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowdatahandlerservice@sha256:ae763a91cdc399d0427ae44b072f158a2bbb05d7f2058d51a8c558f17077c60a
+    lastState: null
+    name: cowdatahandlerservice
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-28T08:58:06Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-9bbl6
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.100
+  hostIPs:
+  - ip: 10.4.16.100
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.140
+  podIPs:
+  - ip: 10.4.16.140
+  qosClass: BestEffort
+  startTime: "2026-07-28T08:58:05Z"

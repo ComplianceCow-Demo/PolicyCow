@@ -1,0 +1,271 @@
+apiversion: v1
+kind: Pod
+metadata:
+  annotations:
+    cluster-autoscaler.kubernetes.io/daemonset-pod: true
+    kubernetes.azure.com/azure-cns-configmap-checksum: 8b77c90b3660a501eed196023a9eaf229097d32ae6bf2b35ca8b922f5067b9a4
+    prometheus.io/port: 10092
+  creationTimestamp: "2026-06-21T14:18:39Z"
+  generateName: azure-cns-
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Eno
+    controller-revision-hash: 77fc475b87
+    k8s-app: azure-cns
+    kubernetes.azure.com/managedby: aks
+    pod-template-generation: 5
+  name: azure-cns-cv449
+  namespace: kube-system
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: DaemonSet
+    name: azure-cns
+    uid: 59cdeaf3-b501-4fa4-9a0c-1b4424f2337f
+  resourceVersion: 617995772
+  uid: 14eb9e9c-9eb9-40f1-ba06-93f27899a438
+name: kube-system/Pod/azure-cns-cv449
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchFields:
+          - key: metadata.name
+            operator: In
+            values:
+            - aks-nodepool1-29681506-vmss00001a
+  containers:
+  - env:
+    - name: KUBERNETES_SERVICE_HOST
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    - name: KUBERNETES_PORT
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP_ADDR
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    image: mcr.microsoft.com/oss/v2/kubernetes/pause:3.6
+    imagePullPolicy: IfNotPresent
+    name: pause
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-4cp4q
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  initContainers:
+  - args:
+    - deploy
+    - --skip-verify
+    - azure-vnet
+    - -o
+    - /opt/cni/bin/azure-vnet
+    - azure-vnet-telemetry
+    - -o
+    - /opt/cni/bin/azure-vnet-telemetry
+    - azure-vnet-ipam
+    - -o
+    - /opt/cni/bin/azure-vnet-ipam
+    - azure.conflist
+    - -o
+    - /etc/cni/net.d/15-azure.conflist
+    command:
+    - /dropgz
+    env:
+    - name: KUBERNETES_SERVICE_HOST
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    - name: KUBERNETES_PORT
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP_ADDR
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    image: mcr.microsoft.com/containernetworking/azure-cni:v1.7.16-0
+    imagePullPolicy: IfNotPresent
+    name: cni-installer
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /opt/cni/bin
+      name: cni-bin
+    - mountPath: /etc/cni/net.d
+      name: cni-conflist
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-4cp4q
+      readOnly: true
+  nodeName: aks-nodepool1-29681506-vmss00001a
+  preemptionPolicy: PreemptLowerPriority
+  priority: 2000001000
+  priorityClassName: system-node-critical
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: azure-cns
+  serviceAccountName: azure-cns
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - key: CriticalAddonsOnly
+    operator: Exists
+  - effect: NoExecute
+    operator: Exists
+  - effect: NoSchedule
+    operator: Exists
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/disk-pressure
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/pid-pressure
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/unschedulable
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/network-unavailable
+    operator: Exists
+  volumes:
+  - hostPath:
+      path: /var/log/azure-cns
+      type: DirectoryOrCreate
+    name: log
+  - hostPath:
+      path: /var/lib/azure-network
+      type: DirectoryOrCreate
+    name: cns-state
+  - hostPath:
+      path: /opt/cni/bin
+      type: Directory
+    name: cni-bin
+  - hostPath:
+      path: /var/run/azure-vnet
+      type: DirectoryOrCreate
+    name: azure-vnet
+  - hostPath:
+      path: /var/lock/azure-vnet
+      type: DirectoryOrCreate
+    name: cni-lock
+  - hostPath:
+      path: /var/run/azure-vnet.json
+      type: FileOrCreate
+    name: legacy-cni-state
+  - hostPath:
+      path: /etc/cni/net.d
+      type: Directory
+    name: cni-conflist
+  - configMap:
+      defaultMode: 420
+      name: cns-config
+    name: cns-config
+  - name: kube-api-access-4cp4q
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:18:41Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:18:43Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:18:44Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:18:44Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-21T14:18:39Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://b192a1b4ad1e78346b6779ed9c132413fd8cf6e7cf4a708e75dc4e918e4f9575
+    image: mcr.microsoft.com/oss/v2/kubernetes/pause:3.6
+    imageID: sha256:ce008d72d7c8487ecfc0c6ea70cf10fd01c359821c5508561ec32a44139aeb7e
+    lastState: null
+    name: pause
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-06-21T14:18:43Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-4cp4q
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.241
+  hostIPs:
+  - ip: 10.4.16.241
+  initContainerStatuses:
+  - containerID: containerd://a1316ae2164c303d38c3fb361cfdf83c60432526d989b852a9b4682ffda8435d
+    image: mcr.microsoft.com/containernetworking/azure-cni:v1.7.16-0
+    imageID: sha256:ea38e9e6b926102c606e9127a5f53989704dcfd5d3653a0280f6f54239711e09
+    lastState: null
+    name: cni-installer
+    ready: true
+    resources: null
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://a1316ae2164c303d38c3fb361cfdf83c60432526d989b852a9b4682ffda8435d
+        exitCode: 0
+        finishedAt: "2026-06-21T14:18:43Z"
+        reason: Completed
+        startedAt: "2026-06-21T14:18:41Z"
+    volumeMounts:
+    - mountPath: /opt/cni/bin
+      name: cni-bin
+    - mountPath: /etc/cni/net.d
+      name: cni-conflist
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-4cp4q
+      readOnly: true
+      recursiveReadOnly: Disabled
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.241
+  podIPs:
+  - ip: 10.4.16.241
+  qosClass: BestEffort
+  startTime: "2026-06-21T14:18:40Z"

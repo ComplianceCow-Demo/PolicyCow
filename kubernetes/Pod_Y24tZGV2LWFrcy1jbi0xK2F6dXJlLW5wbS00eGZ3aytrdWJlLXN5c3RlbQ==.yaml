@@ -1,0 +1,291 @@
+apiversion: v1
+kind: Pod
+metadata:
+  annotations:
+    azure.npm/scrapeable: ""
+    prometheus.io/port: 10091
+  creationTimestamp: "2026-09-15T23:04:40Z"
+  generateName: azure-npm-
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Eno
+    controller-revision-hash: 5cf49bf4b7
+    k8s-app: azure-npm
+    kubernetes.azure.com/managedby: aks
+    pod-template-generation: 12
+  name: azure-npm-4xfwk
+  namespace: kube-system
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: DaemonSet
+    name: azure-npm
+    uid: 48392982-8265-46cf-b6d9-1f10ef4869d6
+  resourceVersion: 660442257
+  uid: 37d89353-e962-4c34-869f-3be57d6ac784
+name: kube-system/Pod/azure-npm-4xfwk
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchFields:
+          - key: metadata.name
+            operator: In
+            values:
+            - aks-nodepool1-29681506-vmss00001a
+  containers:
+  - env:
+    - name: KUBERNETES_SERVICE_HOST
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    - name: KUBERNETES_PORT
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP_ADDR
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    - name: HOSTNAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.nodeName
+    - name: NPM_CONFIG
+      value: /etc/azure-npm/azure-npm.json
+    image: mcr.microsoft.com/containernetworking/azure-npm:v1.6.48-0
+    imagePullPolicy: IfNotPresent
+    name: azure-npm
+    ports:
+    - containerPort: 10091
+      name: metrics
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 250m
+        memory: 400Mi
+      requests:
+        cpu: 50m
+        memory: 300Mi
+    securityContext:
+      capabilities:
+        add:
+        - NET_ADMIN
+        - NET_RAW
+        drop:
+        - ALL
+      privileged: false
+      readOnlyRootFilesystem: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /run/xtables.lock
+      name: xtables-lock
+    - mountPath: /var/log
+      name: log
+    - mountPath: /etc/protocols
+      name: protocols
+    - mountPath: /etc/azure-npm
+      name: azure-npm-config
+    - mountPath: /tmp
+      name: tmp
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-n2xtd
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostNetwork: true
+  initContainers:
+  - command:
+    - /bin/bash
+    - -cx
+    - |
+      installRuleIdempotent() {
+        rule=$1
+        if ! iptables-nft -t mangle -C $rule 2> /dev/null; then
+          echo "installing iptables rule: $rule"
+          iptables-nft -t mangle -I $rule || exit 1
+        else
+          echo "iptables rule already installed: $rule"
+        fi
+      }
+      installRuleIdempotent "FORWARD -d 168.63.129.16 -p tcp --dport 80 -j DROP"
+      installRuleIdempotent "FORWARD -d 168.63.129.16 -p tcp --dport 32526 -j DROP"
+    env:
+    - name: KUBERNETES_SERVICE_HOST
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    - name: KUBERNETES_PORT
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP
+      value: tcp://cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io:443
+    - name: KUBERNETES_PORT_443_TCP_ADDR
+      value: cn-dev-aks-cn-dev-aks-10-207768-be76009f.cc9e8735-611c-47f7-b918-5efaba73f00a.privatelink.westus2.azmk8s.io
+    image: mcr.microsoft.com/containernetworking/azure-npm:v1.6.48-0
+    imagePullPolicy: IfNotPresent
+    name: block-wireserver
+    resources: null
+    securityContext:
+      capabilities:
+        add:
+        - NET_ADMIN
+        drop:
+        - ALL
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /run/xtables.lock
+      name: xtables-lock
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-n2xtd
+      readOnly: true
+  nodeName: aks-nodepool1-29681506-vmss00001a
+  preemptionPolicy: PreemptLowerPriority
+  priority: 2000001000
+  priorityClassName: system-node-critical
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: azure-npm
+  serviceAccountName: azure-npm
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - key: CriticalAddonsOnly
+    operator: Exists
+  - effect: NoExecute
+    operator: Exists
+  - effect: NoSchedule
+    operator: Exists
+  volumes:
+  - hostPath:
+      path: /var/log
+      type: Directory
+    name: log
+  - hostPath:
+      path: /run/xtables.lock
+      type: File
+    name: xtables-lock
+  - hostPath:
+      path: /etc/protocols
+      type: File
+    name: protocols
+  - configMap:
+      defaultMode: 420
+      name: azure-npm-config
+    name: azure-npm-config
+  - emptyDir: null
+    name: tmp
+  - name: kube-api-access-n2xtd
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-15T23:04:43Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-15T23:04:43Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-15T23:04:44Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-15T23:04:44Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-15T23:04:40Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - allocatedResources:
+      cpu: 50m
+      memory: 300Mi
+    containerID: containerd://ac8b8153e58dffe66efc0a9aae797c9c9ac8e2fb992573184b8fadeec27018a8
+    image: mcr.microsoft.com/containernetworking/azure-npm:v1.6.48-0
+    imageID: mcr.microsoft.com/containernetworking/azure-npm@sha256:2e8e036abc6d28f7e161794a2e484881bd261e273c8a40e5dea64e9a5d54c088
+    lastState: null
+    name: azure-npm
+    ready: true
+    resources:
+      limits:
+        cpu: 250m
+        memory: 400Mi
+      requests:
+        cpu: 50m
+        memory: 300Mi
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-09-15T23:04:43Z"
+    volumeMounts:
+    - mountPath: /run/xtables.lock
+      name: xtables-lock
+    - mountPath: /var/log
+      name: log
+    - mountPath: /etc/protocols
+      name: protocols
+    - mountPath: /etc/azure-npm
+      name: azure-npm-config
+    - mountPath: /tmp
+      name: tmp
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-n2xtd
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.241
+  hostIPs:
+  - ip: 10.4.16.241
+  initContainerStatuses:
+  - containerID: containerd://271217fa1aa6e29bf31efc67ddffecec9db48935e3d0d61a0a86379640f645a5
+    image: mcr.microsoft.com/containernetworking/azure-npm:v1.6.48-0
+    imageID: mcr.microsoft.com/containernetworking/azure-npm@sha256:2e8e036abc6d28f7e161794a2e484881bd261e273c8a40e5dea64e9a5d54c088
+    lastState: null
+    name: block-wireserver
+    ready: true
+    resources: null
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://271217fa1aa6e29bf31efc67ddffecec9db48935e3d0d61a0a86379640f645a5
+        exitCode: 0
+        finishedAt: "2026-09-15T23:04:42Z"
+        reason: Completed
+        startedAt: "2026-09-15T23:04:42Z"
+    volumeMounts:
+    - mountPath: /run/xtables.lock
+      name: xtables-lock
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-n2xtd
+      readOnly: true
+      recursiveReadOnly: Disabled
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.241
+  podIPs:
+  - ip: 10.4.16.241
+  qosClass: Burstable
+  startTime: "2026-09-15T23:04:40Z"

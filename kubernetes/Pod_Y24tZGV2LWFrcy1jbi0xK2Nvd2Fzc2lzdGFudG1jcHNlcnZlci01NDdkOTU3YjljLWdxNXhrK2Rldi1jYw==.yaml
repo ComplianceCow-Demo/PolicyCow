@@ -1,0 +1,145 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-27T04:11:22Z"
+  generateName: cowassistantmcpserver-547d957b9c-
+  generation: 1
+  labels:
+    app: cowassistantmcpserver
+    pod-template-hash: 547d957b9c
+  name: cowassistantmcpserver-547d957b9c-gq5xk
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowassistantmcpserver-547d957b9c
+    uid: ee61d06e-6e88-4b70-b9a8-b95938585540
+  resourceVersion: 635521330
+  uid: 85a6ee39-6bb7-4950-9fc7-fd685bee8563
+name: dev-cc/cowassistantmcpserver-547d957b9c-gq5xk
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - env:
+    - name: CCOW_HOST
+      value: https://dev.compliancecow.live/api
+    - name: MCP_TOOLS_TO_BE_INCLUDED
+      value: assistant
+    - name: CCOW_MCP_SERVER_PORT
+      value: 8000
+    - name: LOG_LEVEL
+      value: debug
+    - name: FASTMCP_LOG_LEVEL
+      value: debug
+    image: continube.azurecr.io/compliancecow/dev/cowgoose:R258.1838-A
+    imagePullPolicy: Always
+    name: cowmcp
+    ports:
+    - containerPort: 8000
+      protocol: TCP
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-rdsx8
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss000019
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-rdsx8
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:23Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:22Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:23Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:23Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:22Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://40a5a346196c60f5ffc2f5b6aa19eae55ac4187e214ecb45463eebbfd14fc0d6
+    image: continube.azurecr.io/compliancecow/dev/cowgoose:R258.1838-A
+    imageID: continube.azurecr.io/compliancecow/dev/cowgoose@sha256:ea8583839156c2fab285d171c63658a425d39386af0784f474333672a0945c3e
+    lastState: null
+    name: cowmcp
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-27T04:11:22Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-rdsx8
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.193
+  hostIPs:
+  - ip: 10.4.16.193
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.202
+  podIPs:
+  - ip: 10.4.16.202
+  qosClass: BestEffort
+  startTime: "2026-07-27T04:11:22Z"

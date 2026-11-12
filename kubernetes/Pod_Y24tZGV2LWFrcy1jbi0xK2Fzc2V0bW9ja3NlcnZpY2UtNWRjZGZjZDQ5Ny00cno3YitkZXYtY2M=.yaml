@@ -1,0 +1,148 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-27T04:11:21Z"
+  generateName: assetmockservice-5dcdfcd497-
+  generation: 1
+  labels:
+    app: assetmockservice
+    pod-template-hash: 5dcdfcd497
+  name: assetmockservice-5dcdfcd497-4rz7b
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: assetmockservice-5dcdfcd497
+    uid: f06799c2-b75e-4875-bbe3-78fedef0f67c
+  resourceVersion: 635521480
+  uid: 1cd641ad-e573-4378-a0ad-471ae76858ed
+name: dev-cc/assetmockservice-5dcdfcd497-4rz7b
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - env:
+    - name: COW_MOCK_MGMT_SERVICE_PROTOCOL
+      value: http
+    - name: COW_MOCK_MGMT_SERVICE_HOST_NAME
+      value: assetmockmgmtservice
+    - name: COW_MOCK_SERVICE_PORT_NUMBER
+      value: 8080
+    - name: MOCK_SERVICE_SCOPE
+      value: task
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    image: continube.azurecr.io/compliancecow/prod/mockservice:R257
+    imagePullPolicy: Always
+    name: assetmockservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    - containerPort: 443
+      protocol: TCP
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-mqssc
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001a
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10000
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-mqssc
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:24Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:21Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:24Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:24Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:21Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://22f8d8ba414f6e3ac22a36c84098949ca69f42391c4af991b49f14dfa58bbfbe
+    image: continube.azurecr.io/compliancecow/prod/mockservice:R257
+    imageID: continube.azurecr.io/compliancecow/prod/mockservice@sha256:b2f636db7d639a5b698b51b0485df92b9fbad86187dc65170e7251ae4c8da939
+    lastState: null
+    name: assetmockservice
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-27T04:11:23Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-mqssc
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.241
+  hostIPs:
+  - ip: 10.4.16.241
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.247
+  podIPs:
+  - ip: 10.4.16.247
+  qosClass: BestEffort
+  startTime: "2026-07-27T04:11:21Z"

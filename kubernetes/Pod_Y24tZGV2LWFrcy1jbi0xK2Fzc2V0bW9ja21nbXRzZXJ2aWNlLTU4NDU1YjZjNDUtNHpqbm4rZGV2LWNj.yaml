@@ -1,0 +1,142 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-27T04:11:21Z"
+  generateName: assetmockmgmtservice-58455b6c45-
+  generation: 1
+  labels:
+    app: assetmockmgmtservice
+    pod-template-hash: 58455b6c45
+  name: assetmockmgmtservice-58455b6c45-4zjnn
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: assetmockmgmtservice-58455b6c45
+    uid: f230534e-d0bf-4e68-a737-21702dc30249
+  resourceVersion: 635521309
+  uid: 5bb97bc5-1112-4002-950e-09fb4587f72b
+name: dev-cc/assetmockmgmtservice-58455b6c45-4zjnn
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - env:
+    - name: COW_ETCD_SERVICE_HOST_NAME
+      value: assetmocketcd
+    - name: COW_ETCD_SERVICE_PORT_NUMBER
+      value: 2379
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    - secretRef:
+        name: ccow-secret
+    image: continube.azurecr.io/compliancecow/dev/mockmgmtservice:R257.2-M
+    imagePullPolicy: Always
+    name: assetmockmgmtservice
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-qcj9s
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001a
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-qcj9s
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:23Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:21Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:23Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:23Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-27T04:11:21Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://eb50d6c61ffb41df44b35f4856645cf7027beac0f081acab7bb67bd98118cb41
+    image: continube.azurecr.io/compliancecow/dev/mockmgmtservice:R257.2-M
+    imageID: continube.azurecr.io/compliancecow/dev/mockmgmtservice@sha256:5959605ea7e9f162419ed7dcf54210979ab3ba59844be7780dfaac542c85dcf5
+    lastState: null
+    name: assetmockmgmtservice
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-27T04:11:22Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-qcj9s
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.241
+  hostIPs:
+  - ip: 10.4.16.241
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.36
+  podIPs:
+  - ip: 10.4.16.36
+  qosClass: BestEffort
+  startTime: "2026-07-27T04:11:21Z"

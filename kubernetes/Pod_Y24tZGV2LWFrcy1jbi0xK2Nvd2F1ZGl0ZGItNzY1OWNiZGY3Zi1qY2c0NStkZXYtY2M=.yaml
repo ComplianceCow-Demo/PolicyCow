@@ -1,0 +1,148 @@
+apiversion: v1
+automountserviceaccounttoken: null
+kind: Pod
+metadata:
+  creationTimestamp: "2026-07-21T10:31:20Z"
+  generateName: cowauditdb-7659cbdf7f-
+  generation: 1
+  labels:
+    app: cowauditdb
+    pod-template-hash: 7659cbdf7f
+  name: cowauditdb-7659cbdf7f-jcg45
+  namespace: dev-cc
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cowauditdb-7659cbdf7f
+    uid: 216dff3f-b0ca-43d4-89cd-7ddcf64478b8
+  resourceVersion: 632646706
+  uid: a4c367f8-e3b7-4f8b-8aa0-373c77bb4b69
+name: dev-cc/cowauditdb-7659cbdf7f-jcg45
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - env:
+    - name: POSTGRES_USER
+      value: compliancecow
+    - name: POSTGRES_PASSWORD
+      value: ContiNube1234
+    envFrom:
+    - configMapRef:
+        name: cow-env
+    image: postgres:15
+    imagePullPolicy: IfNotPresent
+    name: cowauditdb
+    ports:
+    - containerPort: 5432
+      protocol: TCP
+    resources: null
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/lib/postgresql/data
+      name: cowauditdb-claim
+      subPath: cowauditdb
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-v5fcr
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-29681506-vmss00001i
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: null
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: cowauditdb-claim
+    persistentVolumeClaim:
+      claimName: cowaudit-db-claim
+  - name: kube-api-access-v5fcr
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-21T10:31:21Z"
+    observedGeneration: 1
+    status: true
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-21T10:31:20Z"
+    observedGeneration: 1
+    status: true
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-21T10:31:21Z"
+    observedGeneration: 1
+    status: true
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-21T10:31:21Z"
+    observedGeneration: 1
+    status: true
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-21T10:31:20Z"
+    observedGeneration: 1
+    status: true
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://7c2e14058ac38bff2a1a65b2a62548118545537e8c5c15054c56231cc1de877b
+    image: docker.io/library/postgres:15
+    imageID: docker.io/library/postgres@sha256:74e110c41804365e3915fcc09d5e7a1eff50161aaa94d5da0e58e0cd75ae509c
+    lastState: null
+    name: cowauditdb
+    ready: true
+    resources: null
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-21T10:31:21Z"
+    volumeMounts:
+    - mountPath: /var/lib/postgresql/data
+      name: cowauditdb-claim
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-v5fcr
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.4.16.100
+  hostIPs:
+  - ip: 10.4.16.100
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.4.16.129
+  podIPs:
+  - ip: 10.4.16.129
+  qosClass: BestEffort
+  startTime: "2026-07-21T10:31:20Z"
